@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&family=Roboto:wght@0,100..900;1,100..900&display=swap');
+@import "tailwindcss";
+
+
+
+@theme {
+  --color--red-50: #FFF5F5;
+  --color--red-100: #FFE3E3;
+  --color--red-200: #FFC9C9;
+  --color--red-300: #FFA8A8;
+  --color--red-400: #FF8787;
+  --color--red-500: #FF6B6B;
+  --color--red-600: #FA5252;
+  --color--red-700: #F03E3E;
+  --color--red-800: #E03131;
+  --color--red-900: #C92A2A;
+
+  --color--gray-50: #F8F9FA;
+  --color--gray-100: #F1F3F5;
+  --color--gray-200: #E9ECEF;
+  --color--gray-300: #DEE2E6;
+  --color--gray-400: #CED4DA;
+  --color--gray-500: #ADB5BD;
+  --color--gray-600: #868E96;
+  --color--gray-700: #495057;
+  --color--gray-800: #343A40;
+  --color--gray-900: #212529;
+
+  --color--teal-50: #E6FCF5;
+  --color--teal-100: #C3FAE8;
+  --color--teal-200: #96F2D7;
+  --color--teal-300: #63E6BE;
+  --color--teal-400: #38D9A9;
+  --color--teal-500: #20C997;
+  --color--teal-600: #12B886;
+  --color--teal-700: #0CA678;
+  --color--teal-800: #099268;
+  --color--teal-900: #087F5B;
+}
+
+
+@theme {
+  --font-roboto: "Roboto", sans-serif; 
+  --font-poppins: "Poppins", sans-serif;
+}
