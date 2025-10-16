@@ -24,7 +24,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
                     {...props}
                     placeholder=" "
                     className={cn(
-                        "bg-white rounded-lg border border-gray-500 px-3 h-[52px] text-gray-800 w-full pt-4 max-w-[25rem] peer placeholder-shown:pt-0  focus:border-gray-800 transition-all outline-none",
+                        "bg-gray-100 rounded-lg border border-gray-500 px-3 h-[3.25rem] text-gray-800 w-full pt-4 max-w-[25rem] font:roboto hover:font-roboto placeholder:font-roboto peer placeholder-shown:pt-0  focus:border-gray-800 transition-all outline-none",
                         error && "border-red-900 focus:border-red-900",
                         className
                     )}
