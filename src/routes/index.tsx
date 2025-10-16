@@ -2,6 +2,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { MenuIcon } from 'lucide-react'
 import Container from '@/view/components/layout/Container'
 import DebtsSection from '@/view/components/pages/debt/DebtsSection/DebtsSection'
+import BtnActions from '@/view/components/pages/debt/DebtsSection/BtnActions'
 
 export const Route = createFileRoute('/')({
   component: App,
@@ -23,6 +24,7 @@ function App() {
         </button>
       </header>
           <DebtsSection />
+
      </div>
     </Container>
   )

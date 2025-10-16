@@ -17,7 +17,7 @@ const DebtCard = ({ debt, openEditAccountModal }: AccountCardProps) => {
       className="p-4  bg-gray-100  h-full 2xl:min-h-[18rem] rounded-2xl  sm:max-w-[18.75rem] md:max-w-full md:w-full flex flex-col justify-between border-b-4 border-teal-950"
     >
       <section>
-        <header className="flex flex-row sm:flex-col md:flex-row w-full justify-between items-start">
+        <header className="flex flex-col pp:flex-row sm:flex-col md:flex-row w-full justify-between items-start">
         <div>
               <span className="text-gray-950 text-lg font-medium tracking-[0.5px] block max-w-[90%] sm:max-w-full md:max-w-[90%] font-poppins">
               {debt.description}

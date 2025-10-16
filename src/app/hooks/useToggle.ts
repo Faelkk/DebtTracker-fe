@@ -5,5 +5,5 @@ export default function useToggle() {
 
     const toggle = useCallback(() => setIsToggled(prev => !prev), []);
 
-    return {isToggled, toggle};
+    return {isToggled, toggle,setIsToggled};
 }
