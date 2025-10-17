@@ -42,7 +42,7 @@ const { form, isLoading, installments,debts } = useOpenCreateNewPaymentModal({
             <Input
               name="totalAmount"
               type="text"
-              placeholder="Valor da dívida"
+              label="Valor da dívida"
               value={field.state.value}
               onChange={(e) => {
                 const onlyNumbers = e.target.value.replace(/[^\d.,]/g, '')

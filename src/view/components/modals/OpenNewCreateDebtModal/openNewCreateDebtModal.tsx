@@ -40,7 +40,7 @@ const OpenNewCreateDebtModal = ({
             <Input
               name="totalAmount"
               type="text"
-              placeholder="Valor da dívida"
+              label="Valor da dívida"
               value={field.state.value}
               onChange={(e) => {
                 const onlyNumbers = e.target.value.replace(/[^\d.,]/g, '')
@@ -62,7 +62,7 @@ const OpenNewCreateDebtModal = ({
             <Input
               name="description"
               type="text"
-              placeholder="Descrição da divida"
+              label="Descrição da divida"
               value={field.state.value}
               onChange={(e) => field.handleChange(e.target.value)}
               error={field.state.meta.errors[0]}
@@ -77,10 +77,10 @@ const OpenNewCreateDebtModal = ({
             <Input
               name="installments"
               type="text"
-              placeholder="Número de parcelas"
+              label="Número de parcelas"
               value={field.state.value}
               onChange={(e) => {
-                // Remove tudo que não seja número inteiro
+  
                 const onlyNumbers = e.target.value.replace(/\D/g, '')
                 field.handleChange(onlyNumbers)
               }}
@@ -145,7 +145,7 @@ const OpenNewCreateDebtModal = ({
               <Input
                 name="dueDate"
                 type="text"
-                placeholder="dd/MM/yyyy"
+                label="dd/MM/yyyy"
                 value={field.state.value}
                 onChange={handleChange}
                 error={field.state.meta.errors[0]}

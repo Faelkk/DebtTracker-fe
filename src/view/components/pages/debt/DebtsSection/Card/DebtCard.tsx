@@ -28,7 +28,7 @@ const DebtCard = ({ debt, openEditAccountModal }: AccountCardProps) => {
        <span
               className={cn(
                 " font-medium tracking-[0.5px] mt-1 font-roboto",
-                debt.isPaid ? "text-teal-800" : "text-red-600"  
+                debt.isPaid ? "text-teal-800" : "text-red-800"  
               )}
             >
               {debt.isPaid ? "Pago" : "Pendente"} 
@@ -50,7 +50,7 @@ const DebtCard = ({ debt, openEditAccountModal }: AccountCardProps) => {
                 <span
               className={cn(
                 " font-medium tracking-[0.5px] mt-1",
-                debt.isPaid ? "text-teal-800" : "text-red-600"
+                debt.isPaid ? "text-teal-800" : "text-red-800"
               )}
             >
             

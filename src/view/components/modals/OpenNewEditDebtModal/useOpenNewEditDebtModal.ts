@@ -1,10 +1,9 @@
-import useToggle from "@/app/hooks/useToggle";
-
 export function useOpenEditNewDebtModal() {
-    const { isToggled,toggle } = useToggle();
+    const isLoading = false
+
+    function onConfirm() {}
 
     return {
-        isOpen: isToggled,
-        toggleEditDebtModal: toggle,
+  onConfirm,isLoading
     };  
 }

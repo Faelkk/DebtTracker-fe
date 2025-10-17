@@ -7,7 +7,7 @@ interface InputSearchDebtProps {
 const InputSearchDebt = ({ onSearch }: InputSearchDebtProps) => {
   return (
     <Input
-      placeholder="Buscar dívida"
+      label="Buscar dívida"
       name="debt"
       id="debt"
       className="md:min-w-full max-w-full 2xl:max-w-[500px]"

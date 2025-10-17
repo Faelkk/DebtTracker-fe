@@ -8,6 +8,9 @@ import DebtCard from '../Card/DebtCard'
 import useDebtSectionController from './useDebtSectionController'
 import OpenNewCreateDebtModal from '@/view/components/modals/OpenNewCreateDebtModal/OpenNewCreateDebtModal'
 import OpenNewPaymentModal from '@/view/components/modals/OpenNewPaymentModal/OpenNewPaymentModal'
+import DeleteTransactionModal from '@/view/components/modals/DeleteTransactionModal/DeleteTransactionModal'
+import DeleteDebtModal from '@/view/components/modals/DeleteDebtModal/DeleteDebtModal'
+import OpenNewEditDebtModal from '@/view/components/modals/OpenNewEditDebtModal/OpenNewEditDebtModal'
 
 
 
@@ -103,7 +106,16 @@ const DebtsSection = () => {
         isOpen={isOpenPaymentModal}
         togglePaymentModal={togglePaymentModal}
       />
+
+
+      {/* <DeleteTransactionModal isOpenDeleteTransactionModal={true} onCloseDeleteTransactionModal={() => (console.log("teste"))} /> */}
+
+      {/* <DeleteDebtModal isOpenDeleteDebtModal={true} onCloseDeleteDebtModal={() => (console.log("teste"))} /> */}
+
+      {/* <OpenNewEditDebtModal onCloseEditDebtModal={() => (console.log("teste"))} isOpenEditDebtModal={true}/> */}
 </main>
+
+
 
 
   )

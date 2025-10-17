@@ -24,7 +24,7 @@ const SigninForm = () => {
           <Input
             name="email"
             type="email"
-            placeholder="Email"
+            label="Email"
             id="email"
 
             value={field.state.value}
@@ -42,7 +42,7 @@ const SigninForm = () => {
           <Input
           name="password"
             type="password"
-            placeholder="Senha"
+            label="Senha"
             id="password"
             value={field.state.value}
             onChange={(e) => field.handleChange(e.target.value)}

@@ -1,5 +1,4 @@
 import { useMemo,useState } from "react";
-import { useWindowWidth } from "../../../../../../app/hooks/useWindowWidth";
 import { useBtnAction } from "../BtnActions/useBtnActions";
 import { useDebts } from "@/app/hooks/useDebts";
 import { useOpenEditNewDebtModal } from "@/view/components/modals/OpenNewEditDebtModal/useOpenNewEditDebtModal";
