@@ -20,27 +20,31 @@ const DebtCard = ({ debt, openEditAccountModal }: AccountCardProps) => {
       <section>
         <header className="flex flex-col pp:flex-row sm:flex-col md:flex-row w-full justify-between items-start">
         <div>
-              <span className="text-gray-950 text-lg font-medium tracking-[0.5px] block max-w-[90%] sm:max-w-full md:max-w-[90%] font-poppins">
-              {debt.description}
-            </span>
+              <h2 className="text-gray-900 text-2xl font-medium tracking-[0.5px] block max-w-[90%] sm:max-w-full md:max-w-[90%] font-poppins">
+         {formatCurrency(debt.totalAmount)}
+            </h2>
         </div>
 
-         <span className="text-gray-600 text-md font-medium tracking-[0.5px] block font-poppins">
-            {formatCurrency(debt.totalAmount)}
-            
-          </span>
-       
-        </header>
-               <div className="flex flex-col mt-4">
-            <span
+       <span
               className={cn(
                 " font-medium tracking-[0.5px] mt-1 font-roboto",
-                debt.isPaid ? "text-teal-800" : "text-red-600"
+                debt.isPaid ? "text-teal-800" : "text-red-600"  
               )}
             >
               {debt.isPaid ? "Pago" : "Pendente"} 
             </span>
-            <span className="text-gray-400 text-sm mt-1 font-roboto">
+       
+        </header>
+
+
+               <div className="flex flex-col mt-4">
+
+               <span className="text-gray-600 text-sm  2xl:text-base mt-1 font-roboto">
+                {debt.description}
+            </span>
+
+          
+            <span className="text-gray-600 text-sm 2xl:text-base mt-1 font-roboto">
              Venceu no dia {formatDate(debt.dueDate)}
             </span>
                 <span
