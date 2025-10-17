@@ -63,10 +63,10 @@ const DropdownFilterDebt = ({
             <li
               key={filter}
               onClick={(e) => {
-                e.stopPropagation(); // evita reabrir
+                e.stopPropagation(); 
                 handleSelectFilter(filter);
               }}
-              className={`px-2 py-2 transition hover:bg-gray-100 rounded cursor-pointer ${
+              className={`px-2 py-2 transition hover:bg-gray-100 rounded cursor-pointer font-roboto ${
                 activeFilter === filter ? "bg-gray-300 font-medium" : ""
               }`}
             >

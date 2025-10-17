@@ -1,20 +1,27 @@
 import { LoaderCircle, PlusIcon } from 'lucide-react'
-import useDebtSectionController from './useDebtSectionController'
-import DebtCard from './DebtCard'
 
-import DropdownFilterDebt from './DropdownFilterDebt'
-import InputSearchDebt from './InputSearchDebt'
-import BtnActions from './BtnActions'
+
+import DropdownFilterDebt from '../Dropdown/DropdownFilterDebt'
+import InputSearchDebt from '../Input/InputSearchDebt'
+import BtnActions from '../BtnActions/BtnActions'
+import DebtCard from '../Card/DebtCard'
+import useDebtSectionController from './useDebtSectionController'
+import OpenNewCreateDebtModal from '@/view/components/modals/OpenNewCreateDebtModal/OpenNewCreateDebtModal'
+import OpenNewPaymentModal from '@/view/components/modals/OpenNewPaymentModal/OpenNewPaymentModal'
+
+
 
 const DebtsSection = () => {
   const {
     debts,
     isLoading,
-    toggleCreateDebtModal,
+    activeFilter,
+    isOpenDebtModal,
+    isOpenPaymentModal,togglePaymentModal,toggleCreateDebtModal,
     toggleEditDebtModal,
     setSearchTerm,
-    setActiveFilter,
-    activeFilter,
+    setActiveFilter
+    
   } = useDebtSectionController();
 
   return (
@@ -84,7 +91,18 @@ const DebtsSection = () => {
     </section>
   )}
 
-           <BtnActions />
+     <BtnActions toggleCreateDebtModal={toggleCreateDebtModal} togglePaymentModal={togglePaymentModal}/> 
+
+
+      <OpenNewCreateDebtModal
+        isOpen={isOpenDebtModal}
+        toggleCreateDebtModal={toggleCreateDebtModal}
+      />
+
+        <OpenNewPaymentModal
+        isOpen={isOpenPaymentModal}
+        togglePaymentModal={togglePaymentModal}
+      />
 </main>
 
 
@@ -92,3 +110,4 @@ const DebtsSection = () => {
 }
 
 export default DebtsSection
+ 

@@ -6,8 +6,8 @@ export interface Debt {
   totalAmount: number;
   installments: number;
   installmentValue: number;
-  createdAt: Date;
-  dueDate: Date;
+  createdAt: string;
+  dueDate: string;
   debtorConfirmedPayment: boolean;
   creditorConfirmedReceipt: boolean;
   isPaid: boolean;

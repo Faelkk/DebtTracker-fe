@@ -1,5 +1,6 @@
-import { cn } from "../../../../../app/utils/cn";
+
 import type { Debt } from "@/app/entities/debt";
+import { cn } from "@/app/utils/cn";
 import { formatCurrency } from "@/app/utils/formatBalancy";
 import { formatDate } from "@/app/utils/formatDate";
 import Button from "@/view/components/common/Button";

@@ -1,15 +1,17 @@
 import { useMemo,useState } from "react";
-import { useWindowWidth } from "../../../../../app/hooks/useWindowWidth";
+import { useWindowWidth } from "../../../../../../app/hooks/useWindowWidth";
+import { useBtnAction } from "../BtnActions/useBtnActions";
 import { useDebts } from "@/app/hooks/useDebts";
-import { useOpenCreateNewDebtModal } from "@/view/components/modals/OpenNewCreateDebtModal/useOpenCreateNewDebtModal";
 import { useOpenEditNewDebtModal } from "@/view/components/modals/OpenNewEditDebtModal/useOpenNewEditDebtModal";
 
 
+
 const useDebtSectionController = () => {
-  const windowWidth = useWindowWidth();
-  const { toggleCreateDebtModal } = useOpenCreateNewDebtModal();
+  const {toggleDebt,togglePayment} = useBtnAction()
   const { toggleEditDebtModal } = useOpenEditNewDebtModal();
   const { debts, isLoading } = useDebts();
+
+
 
   const [searchTerm, setSearchTerm] = useState("");
   const [activeFilter, setActiveFilter] = useState<string>("");
@@ -53,8 +55,10 @@ const useDebtSectionController = () => {
   }, [debts, searchTerm, activeFilter]);
 
   return {
-    toggleCreateDebtModal,
-    windowWidth,
+    toggleCreateDebtModal: toggleDebt.toggle,
+    isOpenDebtModal: toggleDebt.isToggled,
+    togglePaymentModal: togglePayment.toggle,
+    isOpenPaymentModal: togglePayment.isToggled,
     isLoading,
     toggleEditDebtModal,
     debts: filteredDebts,
@@ -65,3 +69,4 @@ const useDebtSectionController = () => {
 };
 
 export default useDebtSectionController;
+ 
