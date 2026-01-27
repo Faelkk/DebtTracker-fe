@@ -23,7 +23,7 @@ const InstallmentsCard = ({ Installments,togglePaymentModal }: AccountCardProps)
 
   return (
   <div
-      className="p-4 min-h-[24rem] bg-gray-200  h-full 2xl:min-h-[22rem] rounded-2xl  sm:max-w-[18.75rem] md:max-w-full md:w-full flex flex-col justify-between border-b-4 border-teal-950"
+      className="p-4 max-h-[24rem] min-h-[24rem] bg-gray-200  h-full 2xl:min-h-[22rem] rounded-2xl  sm:max-w-[18.75rem] md:max-w-full md:w-full flex flex-col justify-between border-b-4 border-teal-950"
     >
       <section>
         <header className="flex flex-col pp:flex-row sm:flex-col md:flex-row w-full justify-between items-start">
@@ -75,7 +75,7 @@ const InstallmentsCard = ({ Installments,togglePaymentModal }: AccountCardProps)
     })
   }
 >
-  Ver mais
+  Pagamentos
 </Button>
  <Button
   className="hover:bg-transparent hover:border-teal-950 hover:border hover:text-teal-950 text-gray-50 bg-teal-800 cursor-pointer p-4 w-full transition-colors"
