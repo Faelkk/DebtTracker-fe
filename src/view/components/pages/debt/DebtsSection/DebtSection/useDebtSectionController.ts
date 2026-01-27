@@ -1,14 +1,14 @@
 import { useMemo,useState } from "react";
 import { useBtnAction } from "../../../../common/BtnActions/useBtnActions";
 import { useDebts } from "@/app/hooks/useDebts";
-import { useOpenEditNewDebtModal } from "@/view/components/modals/OpenNewEditDebtModal/useOpenNewEditDebtModal";
+import { useUser } from "@/app/hooks/useUser";
 
 
 
 const useDebtSectionController = () => {
   const {toggleDebt,togglePayment,toggleDeleteDebt,toggleEditDebtModal} = useBtnAction()
   const { debts, isLoading } = useDebts();
-
+    const { user } = useUser()
 
 
   const [searchTerm, setSearchTerm] = useState("");
@@ -66,8 +66,10 @@ const useDebtSectionController = () => {
     setSearchTerm,
     setActiveFilter,
     activeFilter,
+    user,
   };
 };
 
 export default useDebtSectionController;
  
+

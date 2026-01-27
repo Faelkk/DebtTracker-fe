@@ -7,8 +7,6 @@ import BtnActions from '../../../../common/BtnActions/BtnActions'
 import DebtCard from '../Card/DebtCard'
 import useDebtSectionController from './useDebtSectionController'
 import OpenNewCreateDebtModal from '@/view/components/modals/OpenNewCreateDebtModal/OpenNewCreateDebtModal'
-import OpenNewPaymentModal from '@/view/components/modals/OpenNewPaymentModal/OpenNewPaymentModal'
-import DeleteTransactionModal from '@/view/components/modals/DeleteTransactionModal/DeleteTransactionModal'
 import DeleteDebtModal from '@/view/components/modals/DeleteDebtModal/DeleteDebtModal'
 import OpenNewEditDebtModal from '@/view/components/modals/OpenNewEditDebtModal/OpenNewEditDebtModal'
 
@@ -20,10 +18,12 @@ const DebtsSection = () => {
     isLoading,
     activeFilter,
     isOpenDebtModal,
-    isOpenPaymentModal,togglePaymentModal,toggleCreateDebtModal,
-    toggleEditDebtModal,isOpenDeleteDebtModal,toggleDeleteDebtModal,isToggledEditDebtModal,
+    user,isOpenDeleteDebtModal,isToggledEditDebtModal,
+    togglePaymentModal,
+    toggleCreateDebtModal,
+    toggleEditDebtModal,toggleDeleteDebtModal,
     setSearchTerm,
-    setActiveFilter
+    setActiveFilter,
     
   } = useDebtSectionController();
 
@@ -85,6 +85,7 @@ const DebtsSection = () => {
               <DebtCard
                 key={debt.debtId}
                 debt={debt}
+                user={user}
                 toggleDeleteDebtModal={toggleDeleteDebtModal}
                  toggleEditDebtModal={toggleEditDebtModal}
               />
@@ -103,13 +104,8 @@ const DebtsSection = () => {
         toggleCreateDebtModal={toggleCreateDebtModal}
       />
 
-        {/* <OpenNewPaymentModal
-        isOpen={isOpenPaymentModal}
-        togglePaymentModal={togglePaymentModal}
-      /> */}
+     
 
-
-      {/* <DeleteTransactionModal isOpenDeleteTransactionModal={true} onCloseDeleteTransactionModal={() => (console.log("teste"))} /> */}
 
        <DeleteDebtModal isOpenDeleteDebtModal={isOpenDeleteDebtModal} onCloseDeleteDebtModal={toggleDeleteDebtModal} />
 
@@ -124,3 +120,4 @@ const DebtsSection = () => {
 
 export default DebtsSection
  
+

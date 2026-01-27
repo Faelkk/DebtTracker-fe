@@ -1,6 +1,8 @@
 import { useNavigate } from '@tanstack/react-router'
 import type { Installment } from '@/app/entities/installment'
 
+import type { Debt } from '@/app/entities/debt'
+import type { User } from '@/app/entities/user'
 import { cn } from '@/app/utils/cn'
 import { formatCurrency } from '@/app/utils/formatBalancy'
 import { formatDate } from '@/app/utils/formatDate'
@@ -8,18 +10,21 @@ import Button from '@/view/components/common/Button'
 
 
 
+
+
 interface AccountCardProps {
   Installments: Installment
   togglePaymentModal: () => void
+  debt: Debt
+  user: User
 
 }
 
-const InstallmentsCard = ({ Installments,togglePaymentModal }: AccountCardProps) => {
+const InstallmentsCard = ({ Installments,togglePaymentModal ,debt,user}: AccountCardProps) => {
 
   const navigate = useNavigate()
 
-  console.log(Installments);
-  
+
 
   return (
   <div
@@ -27,7 +32,8 @@ const InstallmentsCard = ({ Installments,togglePaymentModal }: AccountCardProps)
     >
       <section>
         <header className="flex flex-col pp:flex-row sm:flex-col md:flex-row w-full justify-between items-start">
-          <div>
+           <div className='flex gap-3 items-center'>
+           <span className='text-gray-800 font-medium'>Valor:</span>
             <h2 className="text-gray-900 text-2xl font-medium tracking-[0.5px] block max-w-[90%] sm:max-w-full md:max-w-[90%] font-poppins">
               {formatCurrency(Installments.amount)}
             </h2>
@@ -43,13 +49,13 @@ const InstallmentsCard = ({ Installments,togglePaymentModal }: AccountCardProps)
           <div className="flex flex-col pp:flex-row gap-1 text-sm 2xl:text-base mt-1 font-roboto items-center">
             <span className="text-gray-600">Prazo do pagamento:</span>
             <span
-              className={cn('', Installments.isPaid ? 'text-teal-800' : 'text-red-800')}
+              className={cn('font-medium', Installments.isPaid ? 'text-teal-800' : 'text-red-800')}
             >
               {formatDate(Installments.dueDate)}
             </span>
           </div>
 
-          <div>
+       
             <div className="mt-1 text-sm 2xl:text-base font-roboto">
               <span className="text-gray-600">Status: </span>
               <span
@@ -61,6 +67,33 @@ const InstallmentsCard = ({ Installments,togglePaymentModal }: AccountCardProps)
                 {Installments.isPaid ? 'Pago' : 'Pendente'}
               </span>
             </div>
+                  <div className="flex flex-col pp:flex-row gap-1 text-sm 2xl:text-base mt-1 font-roboto items-center capitalize">
+            {' '}
+            {user.userId === debt.creditorId ? (
+              <span className="text-gray-600">
+                Devedor:{' '}
+                <span
+                  className={cn(
+                    'font-medium tracking-[0.5px]',
+                    debt.isPaid ? 'text-teal-800' : 'text-red-800',
+                  )}
+                >
+                  {debt.debtorId}
+                </span>{' '}
+              </span>
+            ) : (
+              <span className="text-gray-600">
+                Credetor:{' '}
+                <span
+                  className={cn(
+                    'font-medium tracking-[0.5px]',
+                    debt.isPaid ? 'text-teal-800' : 'text-red-800',
+                  )}
+                >
+                  {debt.creditorId}
+                </span>{' '}
+              </span>
+            )}
           </div>
         </div>
       </section>

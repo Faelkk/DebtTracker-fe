@@ -4,13 +4,14 @@ import type { User } from "../entities/user";
 
 
 
-const mockAllUsers: User = {
-  userId: "1",
-  name: "Rafael Achtenberg",
-  email: "rafael@example.com"
-}
+const mockAllUsers: Array<User> = [
+  { userId: "1", name: "Rafael Achtenberg", email: "rafael@example.com" },
+  { userId: "2", name: "Maria Oliveira", email: "maria.oliveira@example.com" },
+  { userId: "3", name: "João Silva", email: "joao.silva@example.com" },
+];
 
-export function useUser() {
+
+export function useAllUser() {
   const useMock = true;
 
   const { data, isFetching } = useQuery({
@@ -20,9 +21,9 @@ export function useUser() {
            await new Promise((res) => setTimeout(res, 500));
            return mockAllUsers;
          }
-       : () => authService.me(),
+       : () => authService.getAll(),
      staleTime: Infinity,
   });
 
-  return { user: data, isLoading: isFetching };
+  return { users: data ?? [], isLoading: isFetching };
 }

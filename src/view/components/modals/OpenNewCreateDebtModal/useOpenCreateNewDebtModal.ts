@@ -6,7 +6,7 @@ import { format } from "date-fns";
 
 import { currencyStringToNumber } from "@/app/utils/currencyStringToNumber";
 import { debtService } from "@/app/services/debt";
-import { useUser } from "@/app/hooks/useUser";
+import { useAllUser } from "@/app/hooks/useAllUsers";
 
 const schema = z.object({
   debtorId: z.string().nonempty("Devedor é obrigatório"),
@@ -39,7 +39,8 @@ export function useOpenCreateNewDebtModal({
 }: {
   toggleCreateDebtModal: () => void;
 }) {
-  const { users } = useUser();
+  const { users } = useAllUser();
+  
   const queryClient = useQueryClient();
 
   const { mutateAsync, isPending } = useMutation({
