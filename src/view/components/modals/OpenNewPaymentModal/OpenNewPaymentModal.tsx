@@ -17,7 +17,7 @@ const OpenNewPaymentModal = ({
   togglePaymentModal: () => void
 })  => {
 
-const { form, isLoading, installments,debts } = useOpenCreateNewPaymentModal({
+const { form, isLoading, Installments,debts } = useOpenCreateNewPaymentModal({
     togglePaymentModal,
   })
 
@@ -83,7 +83,7 @@ const { form, isLoading, installments,debts } = useOpenCreateNewPaymentModal({
               value={field.state.value}
               onChange={field.handleChange}
               error={field.state.meta.errors[0]}
-              options={installments.map((i) => ({
+              options={Installments.map((i) => ({
                 value: i.installmentId,
                 label: `Numero da parcela ${i.number}`,
               }))}

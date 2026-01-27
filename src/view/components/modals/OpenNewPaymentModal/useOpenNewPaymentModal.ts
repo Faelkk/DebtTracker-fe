@@ -29,7 +29,7 @@ export function useOpenCreateNewPaymentModal({
   togglePaymentModal: () => void;
 })  {
     const { debts } = useDebts();
-    const {installments} = useInstallments();
+    const { Installments } = useInstallments();
   const queryClient = useQueryClient();
 
   const { mutateAsync, isPending } = useMutation({
@@ -82,6 +82,6 @@ const payload: CreatePaymentParams = {
     form,
     isLoading: isPending,
     debts,
-    installments,
+    Installments,
   };
 }

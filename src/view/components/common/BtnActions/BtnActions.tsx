@@ -30,24 +30,20 @@ const BtnActions = ({ toggleCreateDebtModal,togglePaymentModal }: BtnActionsProp
   return (
     <div className="absolute bottom-2 right-2 flex flex-col gap-3 items-end" ref={dropdownRef}>
       {isToggled && (
-        <ul className="flex flex-col bg-gray-100 p-3 rounded w-full border-b-4 border-b-teal-600 min-w-[10rem] z-50">
+        <ul className="flex flex-col bg-gray-100 p-1 rounded-md w-full border-b-4 border-b-teal-600 min-w-[10rem] z-50">
           <li
-            className="font-roboto cursor-pointer text-gray-800 px-2 py-2 transition hover:bg-gray-200 rounded"
+            className="font-roboto cursor-pointer text-gray-800 p-2 transition hover:bg-gray-200 rounded"
             onClick={() => handleOptionClick(toggleCreateDebtModal)}
           >
             Criar dívida
           </li>
-          <li
-            className="font-roboto cursor-pointer text-gray-800 px-2 py-2 transition hover:bg-gray-200 rounded"
-            onClick={() => handleOptionClick(() => handleOptionClick(togglePaymentModal))}
-          >
-            Fazer Pagamento
-          </li>
+    
+          
         </ul>
       )}
 
       <button
-        className="bg-teal-700 shadow-md rounded-full w-8 h-8 flex items-center justify-center relative transition-colors cursor-pointer"
+        className="bg-teal-700 shadow-md rounded-full w-8 h-8 flex items-center justify-center relative transition-colors cursor-pointer" 
         onClick={toggle} 
       >
         <Plus className="w-8 h-8 text-gray-50" />

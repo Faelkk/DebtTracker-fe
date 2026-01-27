@@ -130,7 +130,7 @@ export function useInstallments() {
   });
 
   return {
-    installments: data ?? [],
+    Installments: data ?? [],
     isLoading: isFetching,
   };
 }

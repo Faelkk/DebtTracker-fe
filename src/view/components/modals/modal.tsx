@@ -39,7 +39,7 @@ const Modal = ({
         >
           <header className="h-12 flex items-center justify-between text-gray-800">
             <button
-              className="w-12 h-12 flex items-center justify-center outline-none"
+              className="w-12 h-12 flex items-center justify-center outline-none cursor-pointer"
               onClick={onClose}
             >
               <X className="w-6 h-6" />

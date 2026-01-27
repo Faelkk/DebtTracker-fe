@@ -1,31 +1,40 @@
 import { LoaderCircle, PlusIcon } from 'lucide-react'
 
 
-import DropdownFilterDebt from '../Dropdown/DropdownFilterDebt'
-import InputSearchDebt from '../Input/InputSearchDebt'
-import BtnActions from '../../../../common/BtnActions/BtnActions'
-import DebtCard from '../Card/DebtCard'
-import useDebtSectionController from './useDebtSectionController'
+
+
+import DropdownFilterInstallment from '../Dropdown/DropdownFilterInstallment'
+import InstallmentsCard from '../InstallmentCard/InstallmentCard'
+import InputSearchInstallment from '../Input/InputSearchInstallment'
+import useInstallmentSectionController from './useInstallmentSectionController'
+
+// import OpenNewCreateInstallmentsModal from '@/view/components/modals/OpenNewCreateInstallmentsModal/OpenNewCreateInstallmentsModal'
+// import OpenNewPaymentModal from '@/view/components/modals/OpenNewPaymentModal/OpenNewPaymentModal'
+// import DeleteTransactionModal from '@/view/components/modals/DeleteTransactionModal/DeleteTransactionModal'
+// import DeleteInstallmentsModal from '@/view/components/modals/DeleteInstallmentsModal/DeleteInstallmentsModal'
+// import OpenNewEditInstallmentsModal from '@/view/components/modals/OpenNewEditInstallmentsModal/OpenNewEditInstallmentsModal'
+
+
 import OpenNewCreateDebtModal from '@/view/components/modals/OpenNewCreateDebtModal/OpenNewCreateDebtModal'
+import BtnActions from '@/view/components/common/BtnActions/BtnActions'
 import OpenNewPaymentModal from '@/view/components/modals/OpenNewPaymentModal/OpenNewPaymentModal'
-import DeleteTransactionModal from '@/view/components/modals/DeleteTransactionModal/DeleteTransactionModal'
-import DeleteDebtModal from '@/view/components/modals/DeleteDebtModal/DeleteDebtModal'
-import OpenNewEditDebtModal from '@/view/components/modals/OpenNewEditDebtModal/OpenNewEditDebtModal'
 
 
 
-const DebtsSection = () => {
+
+const InstallmentsSection = () => {
   const {
-    debts,
+    Installments: Installment,
     isLoading,
     activeFilter,
     isOpenDebtModal,
-    isOpenPaymentModal,togglePaymentModal,toggleCreateDebtModal,
-    toggleEditDebtModal,isOpenDeleteDebtModal,toggleDeleteDebtModal,isToggledEditDebtModal,
+    isOpenPaymentModal,isToggleEditInstallmentModal,
+    toggleCreateDebtModal,
+    toggleEditInstallmentModal,togglePaymentModal,
     setSearchTerm,
     setActiveFilter
     
-  } = useDebtSectionController();
+  } = useInstallmentSectionController();
 
   return (
 <main className="bg-teal-900 rounded-2xl h-full w-full px-4 py-8 md:p-10 mt-10 flex flex-col flex-1 relative max-h-[89vh] overflow-hidden">
@@ -38,23 +47,23 @@ const DebtsSection = () => {
       <header className="flex flex-col 2xl:flex-row 2xl:items-center gap-2 justify-between w-full shrink-0">
         <div className="flex flex-col">
           <h2 className="font-poppins text-gray-50 font-medium text-xl">
-            Minhas dívidas
+            Minhas parcelas
           </h2>
           <span className="font-roboto text-gray-300">
-            Clique em uma dívida para ver mais informações
+            Clique em uma parcela para ver mais informações
           </span>
         </div>
 
         <div className="flex flex-col-reverse sm:flex-row gap-3 w-full justify-end mt-5">
-          <DropdownFilterDebt activeFilter={activeFilter} onSelect={setActiveFilter} />
+          <DropdownFilterInstallment activeFilter={activeFilter} onSelect={setActiveFilter} />
           <div className="w-full sm:w-auto flex-1 2xl:max-w-[400px] xl:max-w-[600px]">
-            <InputSearchDebt onSearch={setSearchTerm} />
+            <InputSearchInstallment onSearch={setSearchTerm} />
           </div>
         </div>
       </header>
 
       <div className="flex flex-col mt-10 flex-1 overflow-hidden">
-        {debts.length === 0 ? (
+        {Installment.length === 0 ? (
           <div className="flex w-full h-full flex-1 items-end justify-center">
             <button
               className="mt-4 h-52 border-2 border-teal-600 border-dashed rounded-2xl flex flex-col items-center justify-center gap-4 text-white w-full"
@@ -81,12 +90,11 @@ const DebtsSection = () => {
               rounded-2xl
             "
           >
-            {debts.map((debt) => (
-              <DebtCard
-                key={debt.debtId}
-                debt={debt}
-                toggleDeleteDebtModal={toggleDeleteDebtModal}
-                 toggleEditDebtModal={toggleEditDebtModal}
+            {Installment.map((installment) => (
+              <InstallmentsCard
+                key={installment.installmentId}
+                Installments={installment}
+               togglePaymentModal={togglePaymentModal}
               />
             ))}
           </div>
@@ -98,22 +106,23 @@ const DebtsSection = () => {
      <BtnActions toggleCreateDebtModal={toggleCreateDebtModal} togglePaymentModal={togglePaymentModal}/> 
 
 
+      
       <OpenNewCreateDebtModal
         isOpen={isOpenDebtModal}
         toggleCreateDebtModal={toggleCreateDebtModal}
       />
 
-        {/* <OpenNewPaymentModal
+         <OpenNewPaymentModal
         isOpen={isOpenPaymentModal}
         togglePaymentModal={togglePaymentModal}
-      /> */}
+      /> 
 
 
       {/* <DeleteTransactionModal isOpenDeleteTransactionModal={true} onCloseDeleteTransactionModal={() => (console.log("teste"))} /> */}
 
-       <DeleteDebtModal isOpenDeleteDebtModal={isOpenDeleteDebtModal} onCloseDeleteDebtModal={toggleDeleteDebtModal} />
+      {/* <DeleteDebtModal isOpenDeleteDebtModal={true} onCloseDeleteDebtModal={() => (console.log("teste"))} /> */}
 
-     <OpenNewEditDebtModal onCloseEditDebtModal={toggleEditDebtModal} isOpenEditDebtModal={isToggledEditDebtModal}/> 
+      {/* <OpenNewEditDebtModal onCloseEditDebtModal={() => (console.log("teste"))} isOpenEditDebtModal={true}/> */}
 </main>
 
 
@@ -122,5 +131,5 @@ const DebtsSection = () => {
   )
 }
 
-export default DebtsSection
+export default InstallmentsSection
  

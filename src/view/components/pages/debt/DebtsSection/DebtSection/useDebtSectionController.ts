@@ -1,13 +1,12 @@
 import { useMemo,useState } from "react";
-import { useBtnAction } from "../BtnActions/useBtnActions";
+import { useBtnAction } from "../../../../common/BtnActions/useBtnActions";
 import { useDebts } from "@/app/hooks/useDebts";
 import { useOpenEditNewDebtModal } from "@/view/components/modals/OpenNewEditDebtModal/useOpenNewEditDebtModal";
 
 
 
 const useDebtSectionController = () => {
-  const {toggleDebt,togglePayment} = useBtnAction()
-  const { toggleEditDebtModal } = useOpenEditNewDebtModal();
+  const {toggleDebt,togglePayment,toggleDeleteDebt,toggleEditDebtModal} = useBtnAction()
   const { debts, isLoading } = useDebts();
 
 
@@ -58,8 +57,11 @@ const useDebtSectionController = () => {
     isOpenDebtModal: toggleDebt.isToggled,
     togglePaymentModal: togglePayment.toggle,
     isOpenPaymentModal: togglePayment.isToggled,
+    isOpenDeleteDebtModal: toggleDeleteDebt.isToggled,
+    toggleDeleteDebtModal: toggleDeleteDebt.toggle,
     isLoading,
-    toggleEditDebtModal,
+    toggleEditDebtModal: toggleEditDebtModal.toggle,
+    isToggledEditDebtModal: toggleEditDebtModal.isToggled,
     debts: filteredDebts,
     setSearchTerm,
     setActiveFilter,
