@@ -24,6 +24,9 @@ const DebtCard = ({
   const navigate = useNavigate()
 
 
+  console.log(debt);
+  
+
   return (
     <div className="p-4 max-h-[24rem] min-h-[24rem] bg-gray-200  h-full 2xl:min-h-[22rem] rounded-2xl  sm:max-w-[18.75rem] md:max-w-full md:w-full flex flex-col justify-between border-b-4 border-teal-950">
       <section>
@@ -47,7 +50,7 @@ const DebtCard = ({
             {debt.description}
           </span>
 
-          <div className="flex flex-col pp:flex-row gap-1 text-sm 2xl:text-base mt-1 font-roboto items-center">
+          <div className="mt-1 text-sm 2xl:text-base font-roboto capitalize">
             <span className="text-gray-600 ">Prazo do pagamento:</span>
             <span
               className={cn('font-medium', debt.isPaid ? 'text-teal-800' : 'text-red-800')}

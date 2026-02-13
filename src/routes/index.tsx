@@ -1,9 +1,17 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, redirect } from '@tanstack/react-router'
 import { MenuIcon } from 'lucide-react'
 import Container from '@/view/components/layout/Container'
 import DebtsSection from '@/view/components/pages/debt/DebtsSection/DebtSection/DebtsSection'
+import { localStorageKeys } from '@/app/config/localStorageKeys'
 
 export const Route = createFileRoute('/')({
+    beforeLoad: () => {
+      const token = localStorage.getItem(localStorageKeys.ACCESS_TOKEN);
+  
+      if (!token) {
+        throw redirect({ to: "/signin" });
+      }
+    },
   component: App,
 })
 
@@ -28,3 +36,5 @@ function App() {
     </Container>
   )
 }
+
+

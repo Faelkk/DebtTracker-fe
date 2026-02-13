@@ -46,7 +46,7 @@ const InstallmentsCard = ({ Installments,togglePaymentModal ,debt,user}: Account
             Valor pago: <span className="text-gray-800 font-medium">{formatCurrency(Installments.paidAmount)}</span>
           </span>
 
-          <div className="flex flex-col pp:flex-row gap-1 text-sm 2xl:text-base mt-1 font-roboto items-center">
+          <div className="mt-1 text-sm 2xl:text-base font-roboto capitalize">
             <span className="text-gray-600">Prazo do pagamento:</span>
             <span
               className={cn('font-medium', Installments.isPaid ? 'text-teal-800' : 'text-red-800')}
@@ -67,7 +67,7 @@ const InstallmentsCard = ({ Installments,togglePaymentModal ,debt,user}: Account
                 {Installments.isPaid ? 'Pago' : 'Pendente'}
               </span>
             </div>
-                  <div className="flex flex-col pp:flex-row gap-1 text-sm 2xl:text-base mt-1 font-roboto items-center capitalize">
+                  <div className="mt-1 text-sm 2xl:text-base font-roboto capitalize">
             {' '}
             {user.userId === debt.creditorId ? (
               <span className="text-gray-600">

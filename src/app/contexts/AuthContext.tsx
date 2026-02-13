@@ -1,74 +1,81 @@
 import {
-    createContext,
-    useCallback,
-    useEffect,
-    useState,
+  createContext,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
 } from "react";
-import toast from "react-hot-toast";
 import { useQuery } from "@tanstack/react-query";
-import type {
-    ReactNode
-} from "react";
+import toast from "react-hot-toast";
 
-
+import type { ReactNode } from "react";
 import type { User } from "@/app/entities/user";
 import { localStorageKeys } from "@/app/config/localStorageKeys";
 import { authService } from "@/app/services/auth";
 
-
 interface AuthContextValue {
-    signedIn: boolean;
-    user: User | undefined;
-    signin: (acessToken: string) => void;
-    signout: () => void;
+  signedIn: boolean;
+  user: User | undefined;
+  isLoading: boolean;
+  signin: (accessToken: string) => void;
+  signout: () => void;
 }
 
 export const AuthContext = createContext({} as AuthContextValue);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-    const [signedIn, setSignedIn] = useState<boolean>(() => {
-        const storedAcessToken = localStorage.getItem(
-            localStorageKeys.ACCESS_TOKEN
-        );
+  const [accessToken, setAccessToken] = useState<string | null>(() => {
+    return localStorage.getItem(localStorageKeys.ACCESS_TOKEN);
+  });
 
-        return !!storedAcessToken;
-    });
+  const signedIn = !!accessToken;
 
-    const { isError, isFetching, isSuccess, data } = useQuery({
-        queryKey: ["users", "me"],
-        queryFn: () => authService.me(),
-        enabled: signedIn,
-    });
+  const {
+    data: user,
+    isError,
+    isFetching,
+  } = useQuery({
+    queryKey: ["users", "me"],
+    queryFn: authService.me,
+    enabled: signedIn, 
+    retry: false,
+  });
 
-    const signin = useCallback((acessToken: string) => {
-        localStorage.setItem(localStorageKeys.ACCESS_TOKEN, acessToken);
+  const signin = useCallback((token: string) => {
+    localStorage.setItem(localStorageKeys.ACCESS_TOKEN, token);
+    setAccessToken(token);
+  }, []);
 
-        setSignedIn(true);
-    }, []);
+  const signout = useCallback(() => {
+    localStorage.removeItem(localStorageKeys.ACCESS_TOKEN);
+    setAccessToken(null);
+  }, []);
 
-    const signout = useCallback(() => {
-        localStorage.removeItem(localStorageKeys.ACCESS_TOKEN);
+  useEffect(() => {
+    if (isError) {
+      toast.error("Sua sessão expirou");
+      signout();
+    }
+  }, [isError, signout]);
 
-        setSignedIn(false);
-    }, []);
+  useEffect(() => {
+    console.log("Data received:", user);
+  }, [user]);
 
-    useEffect(() => {
-        if (isError) {
-            toast.error("Sua sessão expirou");
-            signout();
-        }
-    }, [isError, signout]);
+  const value = useMemo(
+    () => ({
+      signedIn,
+      user,
+      isLoading: isFetching,
+      signin,
+      signout,
+    }),
+    [signedIn, user, isFetching, signin, signout]
+  );
 
-    return (
-        <AuthContext.Provider
-            value={{
-                signedIn: isSuccess && signedIn,
-                user: data,
-                signin,
-                signout,
-            }}
-        >
-            {!isFetching && children}
-        </AuthContext.Provider>
-    );
+  return (
+    <AuthContext.Provider value={value}>
+      {children}
+    </AuthContext.Provider>
+  );
 }

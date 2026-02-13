@@ -14,10 +14,12 @@ const Button = ({
     children,
     disabled,
     isLoading,
+    type,
     ...props
 }: ButtonProps) => {
     return (
         <button
+        type={type}
             disabled={disabled || isLoading}
             {...props}
             className={cn(

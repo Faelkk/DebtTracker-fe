@@ -15,7 +15,7 @@ const PaymentsCard = ({ payments,debt,user }: AccountCardProps) => {
 
 
   return (
-    <section className="p-4 min-h-[12rem] md:max-h-[300px] bg-gray-200  h-full  rounded-2xl  sm:max-w-[18.75rem] md:max-w-full md:w-full flex flex-col justify-between border-b-4 border-teal-950">
+    <section className="p-4 min-h-[15rem] md:max-h-[300px] bg-gray-200  h-full  rounded-2xl  sm:max-w-[18.75rem] md:max-w-full md:w-full flex flex-col justify-between border-b-4 border-teal-950">
         <header className="flex flex-col pp:flex-row sm:flex-col md:flex-row w-full justify-between items-start">
           <div className='flex gap-3 items-center'>
            <span className='text-gray-800 font-medium'>Valor:</span>

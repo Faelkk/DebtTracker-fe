@@ -6,9 +6,12 @@ const FILTERS = [
   "Total quantia",
   "Valor pago",
   "Vencimento",
-  "Mais recente",
+   "Mais recente",
+  "Pago",
+  "Pendente",
   "Limpar Filtros",
 ];
+
 
 interface DropdownFilterInstallmentProps {
   activeFilter: string;
@@ -59,20 +62,20 @@ const DropdownFilterInstallment = ({
 
       {isToggled && (
         <ul className="flex flex-col absolute bg-gray-200 top-0 left-0 mt-14 p-3 rounded w-full border-b-4 border-b-teal-600 min-w-[10rem] z-50">
-          {FILTERS.map((filter) => (
-            <li
-              key={filter}
-              onClick={(e) => {
-                e.stopPropagation(); 
-                handleSelectFilter(filter);
-              }}
-              className={`px-2 py-2 transition hover:bg-gray-100 rounded cursor-pointer font-roboto ${
-                activeFilter === filter ? "bg-gray-300 font-medium" : ""
-              }`}
-            >
-              {filter}
-            </li>
-          ))}
+          {FILTERS
+  .filter((filter) => filter !== activeFilter)
+  .map((filter) => (
+    <li
+      key={filter}
+      onClick={(e) => {
+        e.stopPropagation();
+        handleSelectFilter(filter);
+      }}
+      className="px-2 py-2 transition hover:bg-gray-100 rounded cursor-pointer font-roboto"
+    >
+      {filter}
+    </li>
+))}
         </ul>
       )}
     </div>

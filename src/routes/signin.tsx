@@ -1,10 +1,18 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, redirect } from '@tanstack/react-router'
 import Container from '@/view/components/layout/Container'
 import SigninForm from '@/view/components/pages/signin/SigninForm'
+import { localStorageKeys } from '@/app/config/localStorageKeys';
 
-export const Route = createFileRoute('/signin')({
+export const Route = createFileRoute("/signin")({
+  beforeLoad: () => {
+    const token = localStorage.getItem(localStorageKeys.ACCESS_TOKEN);
+
+    if (token) {
+      throw redirect({ to: "/" });
+    }
+  },
   component: RouteComponent,
-})
+});
 
 function RouteComponent() {
   return <Container className='h-screen'>
@@ -22,3 +30,5 @@ function RouteComponent() {
            </section>
   </Container>
 }
+
+

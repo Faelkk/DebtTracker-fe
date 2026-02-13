@@ -1,11 +1,19 @@
-import { createFileRoute } from "@tanstack/react-router"
+import { createFileRoute, redirect } from "@tanstack/react-router"
 import { z } from 'zod';
 import { MenuIcon } from "lucide-react";
 import Container from "@/view/components/layout/Container"
 import PaymentsSection from "@/view/components/pages/payments/PaymentSection/PaymentSection";
+import { localStorageKeys } from "@/app/config/localStorageKeys";
 
 
 export const Route = createFileRoute('/payments')({
+     beforeLoad: () => {
+        const token = localStorage.getItem(localStorageKeys.ACCESS_TOKEN);
+    
+        if (!token) {
+          throw redirect({ to: "/signin" });
+        }
+      },
   component: Payments,
     validateSearch: z.object({
       debtId: z.string().optional(),

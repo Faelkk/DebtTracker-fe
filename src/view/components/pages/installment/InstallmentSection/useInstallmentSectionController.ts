@@ -33,21 +33,42 @@ const useInstallmentSectionController = () => {
       )
     }
     switch (activeFilter) {
-      case 'Total quantia':
-        result.sort((a, b) => b.amount - a.amount)
-        break
-      case 'Valor pago':
-        result.sort((a, b) => a.paidAmount - b.paidAmount)
-        break
-      case 'Vencimento':
-        result.sort(
-          (a, b) =>
-            new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime(),
-        )
-        break
-      default:
-        break
-    }
+  case 'Total quantia':
+    result.sort((a, b) => b.amount - a.amount)
+    break
+
+  case 'Valor pago':
+    result.sort((a, b) => a.paidAmount - b.paidAmount)
+    break
+
+  case 'Vencimento':
+    result.sort(
+      (a, b) =>
+        new Date(a.dueDate).getTime() -
+        new Date(b.dueDate).getTime(),
+    )
+    break
+
+  case 'Pago':
+    result = result.filter((installment) => installment.isPaid)
+    break
+
+  case 'Pendente':
+    result = result.filter((installment) => !installment.isPaid)
+    break
+
+  case 'Mais recente':
+    result.sort(
+      (a, b) =>
+        new Date(b.dueDate).getTime() -
+        new Date(a.dueDate).getTime(),
+    )
+    break
+
+  default:
+    break
+}
+
 
     return result
   }, [Installments, searchTerm, activeFilter])

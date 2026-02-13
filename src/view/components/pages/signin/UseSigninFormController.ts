@@ -3,12 +3,9 @@ import { useForm } from "@tanstack/react-form";
 import { z } from "zod";
 import toast from "react-hot-toast";
 
-
 import type { SignInParams } from "@/app/services/auth/signin";
 import { authService } from "@/app/services/auth";
 import { useAuth } from "@/app/hooks/useAuth";
-
-
 
 const schema = z.object({
   email: z
@@ -26,7 +23,6 @@ type FormData = z.infer<typeof schema>;
 const useSigninFormController = () => {
   const { signin } = useAuth();
 
-
   const { mutateAsync, isPending } = useMutation({
     mutationFn: async (data: SignInParams) => authService.signin(data),
   });
@@ -36,23 +32,20 @@ const useSigninFormController = () => {
       email: "",
       password: "",
     } as FormData,
+
     onSubmit: async ({ value }) => {
-      try {
-        const { token } = await mutateAsync(value);
-        signin(token);
-      } catch {
-        toast.error("Ocorreu um erro ao realizar o login");
-      }
-    },
-    validators: {
-      onSubmit: ({ value }) => {
-        const result = schema.safeParse(value);
-        if (!result.success) {
-          return result.error.flatten().fieldErrors;
-        }
-        return {};
-      },
-    },
+  console.log("enviou", value);
+
+  const result = schema.safeParse(value);
+  if (!result.success) {
+    toast.error("Formulário inválido");
+    return;
+  }
+
+  const { token } = await mutateAsync(value);
+  signin(token);
+},
+
   });
 
   return {

@@ -1,27 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
 import { authService } from "../services/auth";
-import type { User } from "../entities/user";
 
 
 
-const mockAllUsers: User = {
-  userId: "1",
-  name: "Rafael Achtenberg",
-  email: "rafael@example.com"
-}
+
 
 export function useUser() {
-  const useMock = true;
-
   const { data, isFetching } = useQuery({
     queryKey: ["User"],
-    queryFn: useMock
-       ? async () => {
-           await new Promise((res) => setTimeout(res, 500));
-           return mockAllUsers;
-         }
-       : () => authService.me(),
-     staleTime: Infinity,
+    queryFn: () => authService.me(),
+     staleTime: 1000 * 60 * 60 * 24 * 7, 
   });
 
   return { user: data, isLoading: isFetching };
