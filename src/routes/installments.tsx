@@ -1,9 +1,9 @@
 import { createFileRoute, redirect } from "@tanstack/react-router"
 import { z } from 'zod';
-import { MenuIcon } from "lucide-react";
 import Container from "@/view/components/layout/Container"
 import InstallmentsSection from "@/view/components/pages/installment/InstallmentSection/InstallmentSection";
 import { localStorageKeys } from "@/app/config/localStorageKeys";
+import MenuDropdown from "@/view/components/common/MenuDropdown/MenuDropdown";
 
 
 
@@ -35,9 +35,7 @@ function Installments() {
           </h1>
         </div>
 
-        <button>
-          <MenuIcon className="h-6 w-6 text-teal-900" />
-        </button>
+        <MenuDropdown />
       </header>
           <InstallmentsSection />
 

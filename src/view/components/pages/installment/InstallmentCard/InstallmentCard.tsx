@@ -69,31 +69,16 @@ const InstallmentsCard = ({ Installments,togglePaymentModal ,debt,user}: Account
             </div>
                   <div className="mt-1 text-sm 2xl:text-base font-roboto capitalize">
             {' '}
-            {user.userId === debt.creditorId ? (
-              <span className="text-gray-600">
-                Devedor:{' '}
-                <span
-                  className={cn(
-                    'font-medium tracking-[0.5px]',
-                    debt.isPaid ? 'text-teal-800' : 'text-red-800',
-                  )}
-                >
-                  {debt.debtorId}
-                </span>{' '}
-              </span>
-            ) : (
-              <span className="text-gray-600">
-                Credetor:{' '}
-                <span
-                  className={cn(
-                    'font-medium tracking-[0.5px]',
-                    debt.isPaid ? 'text-teal-800' : 'text-red-800',
-                  )}
-                >
-                  {debt.creditorId}
-                </span>{' '}
-              </span>
-            )}
+             <div className="mt-1 text-sm 2xl:text-base font-roboto capitalize">
+             <span className="text-gray-600">Devedor:  <span
+                className={cn(
+                  'font-medium tracking-[0.5px]',
+                  debt.isPaid ? 'text-teal-800' : 'text-red-800',
+                )}
+              >
+                {debt.involvedPartyName}
+              </span>{' '} </span>
+            </div>
           </div>
         </div>
       </section>
@@ -104,7 +89,7 @@ const InstallmentsCard = ({ Installments,togglePaymentModal ,debt,user}: Account
   onClick={() =>
     navigate({
       to: `/payments`,
-      search: (old) => ({ ...old, debtId: Installments.debtId }),
+      search: (old) => ({ ...old, debtId: Installments.debtId ,installmentId: Installments.installmentId}),
     })
   }
 >

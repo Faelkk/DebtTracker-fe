@@ -3,6 +3,7 @@ import { MenuIcon } from 'lucide-react'
 import Container from '@/view/components/layout/Container'
 import DebtsSection from '@/view/components/pages/debt/DebtsSection/DebtSection/DebtsSection'
 import { localStorageKeys } from '@/app/config/localStorageKeys'
+import MenuDropdown from '@/view/components/common/MenuDropdown/MenuDropdown'
 
 export const Route = createFileRoute('/')({
     beforeLoad: () => {
@@ -25,10 +26,7 @@ function App() {
             Debt Tracker
           </h1>
         </div>
-
-        <button>
-          <MenuIcon className="h-6 w-6 text-teal-900" />
-        </button>
+          <MenuDropdown />
       </header>
           <DebtsSection />
 

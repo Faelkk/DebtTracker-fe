@@ -2,10 +2,13 @@ import toast from "react-hot-toast";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { z } from "zod";
 import { useForm } from "@tanstack/react-form";
+import { useState } from "react";
 import type { CreatePaymentParams } from "@/app/services/payment/create";
 import { paymentService } from "@/app/services/payment";
 import { useDebts } from "@/app/hooks/useDebts";
 import { useInstallments } from "@/app/hooks/useInstallments";
+import { formatCurrencyForm } from "@/app/utils/formatCurrencyForm";
+
 
 
 
@@ -27,19 +30,21 @@ export function useOpenCreateNewPaymentModal({
   togglePaymentModal,
 }: {
   togglePaymentModal: () => void;
-})  {
-    const { debts } = useDebts();
-    const { Installments } = useInstallments();
+}) {
+  const { debts } = useDebts();
   const queryClient = useQueryClient();
+  const [selectedDebtId, setSelectedDebtId] = useState<string>("");
+
+
+  const { Installments } = useInstallments(selectedDebtId);
 
   const { mutateAsync, isPending } = useMutation({
     mutationFn: async (data: FormData) => {
-
-const payload: CreatePaymentParams = {
-  DebtId: data.DebtId,
-  InstallmentId: data.InstallmentId,
-  Amount: parseFloat(data.Amount),
-};
+      const payload: CreatePaymentParams = {
+        DebtId: data.DebtId,
+        InstallmentId: data.InstallmentId,
+        Amount: formatCurrencyForm(data.Amount),
+      };
 
       return paymentService.create(payload);
     },
@@ -52,36 +57,39 @@ const payload: CreatePaymentParams = {
       InstallmentId: "",
     } as FormData,
 
-   onSubmit: async ({ value }) => {
-  try {
+    onSubmit: async ({ value }) => {
+      try {
+        await mutateAsync(value);
 
-    await mutateAsync(value);
+        queryClient.invalidateQueries({ queryKey: ["Debts"] });
+        queryClient.invalidateQueries({ queryKey: ["Installments"] });
+        queryClient.invalidateQueries({
+          queryKey: ["Payments", value.DebtId, value.InstallmentId],
+        });
 
-    queryClient.invalidateQueries({ queryKey: ["debts"] });
-    queryClient.invalidateQueries({ queryKey: ["payments"] });
-    toast.success("Pagamento efetuado com sucesso!");
-    togglePaymentModal();
-    form.reset();
-  } catch {
-    toast.error("Erro ao efetuar pagamento. Tente novamente mais tarde.");
-  }
-},
-
-    validators: {
-      onSubmit: ({ value }) => {
-        const result = schema.safeParse(value);
-        if (!result.success) {
-          return result.error.flatten().fieldErrors;
-        }
-        return {};
-      },
+        toast.success("Pagamento efetuado com sucesso!");
+        togglePaymentModal();
+        form.reset();
+      } catch {
+        toast.error("Erro ao efetuar pagamento.");
+      }
     },
   });
 
+  function handleDebtChange(debtId: string) {
+
+    
+    setSelectedDebtId(debtId);
+    form.setFieldValue("DebtId", debtId);
+    form.setFieldValue("InstallmentId", "");
+  }
+
   return {
+    selectedDebtId,
+    handleDebtChange,
     form,
     isLoading: isPending,
     debts,
-    Installments,
+    Installments, 
   };
 }

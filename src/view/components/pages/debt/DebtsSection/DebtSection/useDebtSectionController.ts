@@ -4,10 +4,12 @@ import { useDebts } from '@/app/hooks/useDebts'
 import { useUser } from '@/app/hooks/useUser'
 
 const useDebtSectionController = () => {
-  const { toggleDebt, togglePayment, toggleDeleteDebt, toggleEditDebtModal } =
+  const { toggleDebt, togglePayment, toggleDeleteDebt, toggleEditDebt } =
     useBtnAction()
   const { debts, isLoading } = useDebts()
   const { user } = useUser()
+  const [selectedDeleteDebt, setSelectedDeleteDebt] = useState('')
+  const [selectedConfirmDebt,setSelectedConfirmDebt] = useState('')
 
   const [searchTerm, setSearchTerm] = useState('')
   const [activeFilter, setActiveFilter] = useState<string>('')
@@ -62,16 +64,39 @@ const useDebtSectionController = () => {
     return result
   }, [debts, searchTerm, activeFilter])
 
+  function toggleDeleteDebtModal(debtId: string) {
+    toggleDeleteDebt.toggle()
+    setSelectedDeleteDebt(debtId)
+  }
+
+  function onCloseDeleteDebtModal() {
+    toggleDeleteDebt.toggle()
+    setSelectedDeleteDebt('')
+  }
+
+  function toggleEditDebtModal(debtId: string) {
+    toggleEditDebt.toggle()
+    setSelectedConfirmDebt(debtId)
+  }
+
+  function onCloseEditDebtModal() {
+    toggleEditDebt.toggle()
+    setSelectedConfirmDebt('')
+  }
+
   return {
+    selectedConfirmDebt,selectedDeleteDebt,
     toggleCreateDebtModal: toggleDebt.toggle,
     isOpenDebtModal: toggleDebt.isToggled,
     togglePaymentModal: togglePayment.toggle,
     isOpenPaymentModal: togglePayment.isToggled,
     isOpenDeleteDebtModal: toggleDeleteDebt.isToggled,
-    toggleDeleteDebtModal: toggleDeleteDebt.toggle,
+    toggleDeleteDebtModal,
+    onCloseDeleteDebtModal,
     isLoading,
-    toggleEditDebtModal: toggleEditDebtModal.toggle,
-    isToggledEditDebtModal: toggleEditDebtModal.isToggled,
+    toggleEditDebtModal,
+    onCloseEditDebtModal,
+    isToggledEditDebtModal: toggleEditDebt.isToggled,
     debts: filteredDebts,
     setSearchTerm,
     setActiveFilter,

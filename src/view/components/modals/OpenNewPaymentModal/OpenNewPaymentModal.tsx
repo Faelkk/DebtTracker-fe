@@ -17,7 +17,7 @@ const OpenNewPaymentModal = ({
   togglePaymentModal: () => void
 })  => {
 
-const { form, isLoading, Installments,debts } = useOpenCreateNewPaymentModal({
+const { form, isLoading, Installments,debts,selectedDebtId,handleDebtChange } = useOpenCreateNewPaymentModal({
     togglePaymentModal,
   })
 
@@ -42,7 +42,7 @@ const { form, isLoading, Installments,debts } = useOpenCreateNewPaymentModal({
             <Input
               name="totalAmount"
               type="text"
-              label="Valor da dívida"
+              label="Valor da do pagamento"
               value={field.state.value}
               onChange={(e) => {
                 const onlyNumbers = e.target.value.replace(/[^\d.,]/g, '')
@@ -64,7 +64,10 @@ const { form, isLoading, Installments,debts } = useOpenCreateNewPaymentModal({
             <Select
               placeholder="Selecionar divida"
               value={field.state.value}
-              onChange={field.handleChange}
+              onChange={(value) => {
+  field.handleChange(value);
+  handleDebtChange(value);
+}}
               error={field.state.meta.errors[0]}
               options={debts.map((d) => ({
                 value: d.debtId,
@@ -74,7 +77,7 @@ const { form, isLoading, Installments,debts } = useOpenCreateNewPaymentModal({
           )}
         />
 
-        <Field
+      {selectedDebtId &&   <Field
           form={form}
           name="InstallmentId"
           children={(field) => (
@@ -89,7 +92,7 @@ const { form, isLoading, Installments,debts } = useOpenCreateNewPaymentModal({
               }))}
             />
           )}
-        />
+        />}
 
 
 
@@ -102,3 +105,4 @@ const { form, isLoading, Installments,debts } = useOpenCreateNewPaymentModal({
 }
 
 export default OpenNewPaymentModal
+

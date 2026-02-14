@@ -3,10 +3,8 @@ import { ArrowDown } from "lucide-react";
 import useToggle from "@/app/hooks/useToggle";
 
 const FILTERS = [
-  "Total quantia",
   "Valor pago",
-  "Vencimento",
-   "Mais recente",
+  "Mais recente",
   "Pago",
   "Pendente",
   "Limpar Filtros",

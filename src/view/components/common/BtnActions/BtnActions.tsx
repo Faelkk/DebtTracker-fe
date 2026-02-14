@@ -37,7 +37,12 @@ const BtnActions = ({ toggleCreateDebtModal,togglePaymentModal }: BtnActionsProp
           >
             Criar dívida
           </li>
-    
+          <li
+            className="font-roboto cursor-pointer text-gray-800 p-2 transition hover:bg-gray-200 rounded"
+            onClick={() => handleOptionClick(togglePaymentModal)}
+          >
+            Fazer pagamento
+          </li>
           
         </ul>
       )}

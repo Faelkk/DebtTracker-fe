@@ -2,10 +2,13 @@ import { useMutation } from "@tanstack/react-query";
 import { useForm } from "@tanstack/react-form";
 import { z } from "zod";
 import toast from "react-hot-toast";
-
+import { useNavigate } from "@tanstack/react-router";
 import type { SignInParams } from "@/app/services/auth/signin";
 import { authService } from "@/app/services/auth";
+
 import { useAuth } from "@/app/hooks/useAuth";
+
+
 
 const schema = z.object({
   email: z
@@ -22,6 +25,8 @@ type FormData = z.infer<typeof schema>;
 
 const useSigninFormController = () => {
   const { signin } = useAuth();
+    const navigate = useNavigate(); 
+
 
   const { mutateAsync, isPending } = useMutation({
     mutationFn: async (data: SignInParams) => authService.signin(data),
@@ -34,16 +39,23 @@ const useSigninFormController = () => {
     } as FormData,
 
     onSubmit: async ({ value }) => {
-  console.log("enviou", value);
+      const result = schema.safeParse(value);
 
-  const result = schema.safeParse(value);
-  if (!result.success) {
-    toast.error("Formulário inválido");
-    return;
-  }
+      if (!result.success) {
+        toast.error("Formulário inválido");
+        return;
+      }
 
-  const { token } = await mutateAsync(value);
-  signin(token);
+      try {
+        const { token } = await mutateAsync(value);
+
+        signin(token);
+
+        navigate({ to: "/" });
+
+      } catch (error) {
+        toast.error("Erro ao fazer login");
+      }
 },
 
   });

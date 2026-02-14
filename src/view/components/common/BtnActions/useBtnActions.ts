@@ -4,12 +4,12 @@ export function useBtnAction() {
   const toggleDebt = useToggle();
   const togglePayment = useToggle();
   const toggleDeleteDebt = useToggle();
-  const toggleEditDebtModal = useToggle();
+  const toggleEditDebt= useToggle();
 
   return {
     toggleDebt,
     togglePayment,
     toggleDeleteDebt,
-    toggleEditDebtModal,
+    toggleEditDebt
   };
 }

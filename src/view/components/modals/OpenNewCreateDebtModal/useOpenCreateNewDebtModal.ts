@@ -4,18 +4,21 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
 import { format } from "date-fns";
 
-import { currencyStringToNumber } from "@/app/utils/currencyStringToNumber";
+
 import { debtService } from "@/app/services/debt";
 import { useAllUser } from "@/app/hooks/useAllUsers";
+import { formatCurrencyForm } from "@/app/utils/formatCurrencyForm";
 
 const schema = z.object({
-  debtorId: z.string().nonempty("Devedor é obrigatório"),
-  creditorId: z.string().nonempty("Credor é obrigatório"),
+  involvedPartyName: z.string().nonempty("Nome do envolvido é obrigatório"),
   description: z.string().nonempty("Descrição é obrigatória"),
   totalAmount: z
-    .string()
-    .nonempty("Informe o valor total")
-    .refine((v) => parseFloat(v) > 0, "TotalAmount deve ser maior que 0"),
+  .string()
+  .nonempty("Informe o valor total")
+  .refine(
+    (v) => formatCurrencyForm(v) > 0,
+    "Valor deve ser maior que 0"
+  ),
   installments: z
     .string()
     .nonempty("Informe o número de parcelas")
@@ -30,6 +33,7 @@ const schema = z.object({
       const date = new Date(year, month - 1, day);
       return !isNaN(date.getTime());
     }, "Data inválida"),
+    isMyDebt: z.boolean().default(true),
 });
 
 type FormData = z.infer<typeof schema>;
@@ -45,35 +49,39 @@ export function useOpenCreateNewDebtModal({
 
   const { mutateAsync, isPending } = useMutation({
     mutationFn: async (data: FormData) => {
-      const [day, month, year] = data.dueDate.split("/").map(Number);
 
-      const formattedData = {
-        debtorId: data.debtorId,
-        creditorId: data.creditorId,
-        description: data.description,
-        totalAmount: currencyStringToNumber(data.totalAmount),
-        installments: parseInt(data.installments, 10),
-        dueDate: new Date(year, month - 1, day).toISOString(),
-      };
+  const [day, month, year] = data.dueDate.split("/").map(Number);
 
-      return debtService.create(formattedData);
-    },
+  const formattedData = {
+    involvedPartyName: data.involvedPartyName,
+    description: data.description,
+    totalAmount: formatCurrencyForm(data.totalAmount),
+    installments: Number(data.installments),
+    isMyDebt: data.isMyDebt,
+    dueDate: `${year}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}`,
+  };
+
+
+
+  return debtService.create(formattedData);
+},
   });
 
   const form = useForm({
     defaultValues: {
-      debtorId: "",
-      creditorId: "",
+      involvedPartyName: "",
       description: "",
       totalAmount: "",
       installments: "1",
       dueDate: format(new Date(), "dd/MM/yyyy"),
+      isMyDebt: true,
     } as FormData,
 
     onSubmit: async ({ value }) => {
-      try {
+      try { 
         await mutateAsync(value);
-        queryClient.invalidateQueries({ queryKey: ["debts"] });
+        queryClient.invalidateQueries({ queryKey: ["Debts"] });
+        queryClient.invalidateQueries({ queryKey: ["Installments"] });
         toast.success("Dívida cadastrada com sucesso!");
         toggleCreateDebtModal();
         form.reset();
@@ -82,15 +90,6 @@ export function useOpenCreateNewDebtModal({
       }
     },
 
-    validators: {
-      onSubmit: ({ value }) => {
-        const result = schema.safeParse(value);
-        if (!result.success) {
-          return result.error.flatten().fieldErrors;
-        }
-        return {};
-      },
-    },
   });
 
   return {

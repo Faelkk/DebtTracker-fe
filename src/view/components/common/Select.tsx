@@ -16,6 +16,7 @@ interface SelectProps {
     }>;
     value?: string;
     onChange?: (value: string) => void;
+    disabled?: boolean;
 }
 
 const Select = ({
@@ -25,6 +26,7 @@ const Select = ({
     error,
     onChange,
     value,
+    disabled
 }: SelectProps) => {
     const [selectedValue, setSelectedValue] = useState(value ?? "");
 
@@ -51,7 +53,7 @@ const Select = ({
                         className={cn(
                             "bg-white w-full rounded-lg border border-gray-500 px-3 h-[52px] text-gray-800 focus:border-gray-800 transition-all outline-none text-left relative pt-4",
                             error && "!border-red-900",
-                            className
+                            className,disabled
                         )}
                     >
                         <RdxSelect.Value />

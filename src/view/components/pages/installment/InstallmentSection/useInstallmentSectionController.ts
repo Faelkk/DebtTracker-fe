@@ -7,15 +7,19 @@ import { useUser } from '@/app/hooks/useUser'
 import { useDebtId } from '@/app/hooks/useDebtById'
 
 const useInstallmentSectionController = () => {
-  const { toggleDebt, togglePayment, toggleEditDebtModal } = useBtnAction()
+  const { toggleDebt, togglePayment, toggleEditDebt } = useBtnAction()
 
   const search = useSearch({ from: '/installments' })
   const debtId = search.debtId
 
-  const { Installments, isLoading } = useInstallments()
+  if(!debtId) {
+    throw new Error('Debt ID is required in the search parameters')
+  }
+
+  const { Installments, isLoading } = useInstallments(debtId)
 
   const { user, isLoading: userIsLoading } = useUser()
-  const { debt, isLoading: debtIsLoading } = useDebtId(debtId as string)
+  const { debt, isLoading: debtIsLoading } = useDebtId(debtId)
 
   const [searchTerm, setSearchTerm] = useState('')
   const [activeFilter, setActiveFilter] = useState<string>('')
@@ -33,21 +37,11 @@ const useInstallmentSectionController = () => {
       )
     }
     switch (activeFilter) {
-  case 'Total quantia':
-    result.sort((a, b) => b.amount - a.amount)
-    break
 
   case 'Valor pago':
     result.sort((a, b) => a.paidAmount - b.paidAmount)
     break
 
-  case 'Vencimento':
-    result.sort(
-      (a, b) =>
-        new Date(a.dueDate).getTime() -
-        new Date(b.dueDate).getTime(),
-    )
-    break
 
   case 'Pago':
     result = result.filter((installment) => installment.isPaid)
@@ -59,9 +53,9 @@ const useInstallmentSectionController = () => {
 
   case 'Mais recente':
     result.sort(
-      (a, b) =>
-        new Date(b.dueDate).getTime() -
-        new Date(a.dueDate).getTime(),
+      (a, b) =>        new Date(a.dueDate).getTime() -
+        new Date(b.dueDate).getTime() 
+
     )
     break
 
@@ -78,8 +72,8 @@ const useInstallmentSectionController = () => {
     isOpenDebtModal: toggleDebt.isToggled,
     togglePaymentModal: togglePayment.toggle,
     isOpenPaymentModal: togglePayment.isToggled,
-    toggleEditInstallmentModal: toggleEditDebtModal.toggle,
-    isToggleEditInstallmentModal: toggleEditDebtModal.isToggled,
+    toggleEditInstallmentModal: toggleEditDebt.toggle,
+    isToggleEditInstallmentModal: toggleEditDebt.isToggled,
     isLoading,
     Installments: filteredInstallments,
     setSearchTerm,

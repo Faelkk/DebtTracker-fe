@@ -9,33 +9,39 @@ import useDebtSectionController from './useDebtSectionController'
 import OpenNewCreateDebtModal from '@/view/components/modals/OpenNewCreateDebtModal/OpenNewCreateDebtModal'
 import DeleteDebtModal from '@/view/components/modals/DeleteDebtModal/DeleteDebtModal'
 import OpenNewEditDebtModal from '@/view/components/modals/OpenNewEditDebtModal/OpenNewEditDebtModal'
+import OpenNewPaymentModal from '@/view/components/modals/OpenNewPaymentModal/OpenNewPaymentModal'
 
 
 
 const DebtsSection = () => {
   const {
     debts,
+    isOpenPaymentModal,
     isLoading,
     activeFilter,
     isOpenDebtModal,
-    user,isOpenDeleteDebtModal,isToggledEditDebtModal,
+    selectedDeleteDebt,selectedConfirmDebt,
+    isOpenDeleteDebtModal,
+    isToggledEditDebtModal,
     togglePaymentModal,
     toggleCreateDebtModal,
     toggleEditDebtModal,toggleDeleteDebtModal,
     setSearchTerm,
     setActiveFilter,
+    onCloseDeleteDebtModal,onCloseEditDebtModal,
     
   } = useDebtSectionController();
 
   return (
-<main className="bg-teal-900 rounded-2xl h-full w-full px-4 py-8 md:p-10 mt-10 flex flex-col flex-1 relative max-h-[89vh] overflow-hidden">
-  {isLoading ? (
-    <div className="flex items-center justify-center h-full w-full">
-      <LoaderCircle className="text-gray-50 w-10 h-10 animate-spin" />
-    </div>
-  ) : (
-    <section className="flex flex-col flex-1 overflow-hidden">
-      <header className="flex flex-col 2xl:flex-row 2xl:items-center gap-2 justify-between w-full shrink-0">
+<main className="bg-teal-900 rounded-2xl h-full w-full mt-10 flex flex-col flex-1 max-h-[89vh] overflow-hidden">
+ 
+    <section className="flex flex-col flex-1 overflow-hidden relative px-4  md:p-10">
+      {isLoading ? (<>
+      <div>
+        <LoaderCircle className="animate-spin w-12 h-12 text-gray-300 mx-auto mt-20" />
+      </div>
+      </>) : <>
+        <header className="flex flex-col 2xl:flex-row 2xl:items-center gap-2 justify-between w-full shrink-0">
         <div className="flex flex-col">
           <h2 className="font-poppins text-gray-50 font-medium text-xl">
             Minhas dívidas
@@ -85,7 +91,7 @@ const DebtsSection = () => {
               <DebtCard
                 key={debt.debtId}
                 debt={debt}
-                user={user}
+
                 toggleDeleteDebtModal={toggleDeleteDebtModal}
                  toggleEditDebtModal={toggleEditDebtModal}
               />
@@ -93,10 +99,13 @@ const DebtsSection = () => {
           </div>
         )}
       </div>
-    </section>
-  )}
+      </>}
 
-     <BtnActions toggleCreateDebtModal={toggleCreateDebtModal} togglePaymentModal={togglePaymentModal}/> 
+           <BtnActions toggleCreateDebtModal={toggleCreateDebtModal} togglePaymentModal={togglePaymentModal}/> 
+    </section>
+  
+
+
 
 
       <OpenNewCreateDebtModal
@@ -104,12 +113,11 @@ const DebtsSection = () => {
         toggleCreateDebtModal={toggleCreateDebtModal}
       />
 
-     
+      <OpenNewPaymentModal isOpen={isOpenPaymentModal} togglePaymentModal={togglePaymentModal} />
 
+       <DeleteDebtModal isOpenDeleteDebtModal={isOpenDeleteDebtModal} onCloseDeleteDebtModal={onCloseDeleteDebtModal} debtId={selectedDeleteDebt} />
 
-       <DeleteDebtModal isOpenDeleteDebtModal={isOpenDeleteDebtModal} onCloseDeleteDebtModal={toggleDeleteDebtModal} />
-
-     <OpenNewEditDebtModal onCloseEditDebtModal={toggleEditDebtModal} isOpenEditDebtModal={isToggledEditDebtModal}/> 
+     <OpenNewEditDebtModal onCloseEditDebtModal={onCloseEditDebtModal} isOpenEditDebtModal={isToggledEditDebtModal} debtId={selectedConfirmDebt} /> 
 </main>
 
 

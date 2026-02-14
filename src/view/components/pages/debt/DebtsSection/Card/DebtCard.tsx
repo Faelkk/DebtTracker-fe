@@ -10,22 +10,17 @@ import Button from '@/view/components/common/Button'
 
 interface AccountCardProps {
   debt: Debt
-  toggleDeleteDebtModal: () => void
-  toggleEditDebtModal: () => void
-  user: User | null
+  toggleDeleteDebtModal: (debtId: string) => void
+  toggleEditDebtModal: (debtId: string) => void
 }
 
 const DebtCard = ({
   debt,
   toggleDeleteDebtModal,
   toggleEditDebtModal,
-  user
 }: AccountCardProps) => {
   const navigate = useNavigate()
 
-
-  console.log(debt);
-  
 
   return (
     <div className="p-4 max-h-[24rem] min-h-[24rem] bg-gray-200  h-full 2xl:min-h-[22rem] rounded-2xl  sm:max-w-[18.75rem] md:max-w-full md:w-full flex flex-col justify-between border-b-4 border-teal-950">
@@ -39,7 +34,7 @@ const DebtCard = ({
 
           <button
             className="w-[52px] h-[52px] rounded-full  flex justify-center items-center cursor-pointer"
-            onClick={toggleDeleteDebtModal}
+            onClick={() => toggleDeleteDebtModal(debt.debtId)}
           >
             <Trash className="w-6 h-6 text-red-900" />
           </button>
@@ -71,27 +66,14 @@ const DebtCard = ({
               </span>
             </div>
               <div className="mt-1 text-sm 2xl:text-base font-roboto capitalize">
-            {user?.userId === debt.creditorId ? (
-              <span className="text-gray-600">Devedor:  <span
+             <span className="text-gray-600">Devedor:  <span
                 className={cn(
                   'font-medium tracking-[0.5px]',
                   debt.isPaid ? 'text-teal-800' : 'text-red-800',
                 )}
               >
-                {debt.debtorId}
+                {debt.involvedPartyName}
               </span>{' '} </span>
-            ) : (
-              <span className="text-gray-600">
-                Credetor:  <span
-                className={cn(
-                  'font-medium tracking-[0.5px]',
-                  debt.isPaid ? 'text-teal-800' : 'text-red-800',
-                )}
-              >
-                {debt.creditorId}
-              </span>{' '}
-              </span>
-            )}
             </div>
         </div>
       </section>
@@ -110,7 +92,7 @@ const DebtCard = ({
         </Button>
         <Button
           className="hover:bg-transparent hover:border-teal-950 hover:border hover:text-teal-950 text-gray-50 bg-teal-800 cursor-pointer p-4 w-full transition-colors"
-          onClick={toggleEditDebtModal}
+          onClick={() => toggleEditDebtModal(debt.debtId)}
         >
           Alterar status
         </Button>

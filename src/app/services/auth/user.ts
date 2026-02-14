@@ -6,7 +6,5 @@ export async function me() {
         "/user/me",
     );
 
-    console.log("Fetched user data:", data); // Log the fetched user data for debugging
-
     return data;
 }

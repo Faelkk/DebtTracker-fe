@@ -6,9 +6,9 @@ import type { Installment } from "@/app/entities/installment";
 
 type InstallmentsResponse = Array<Installment>;
 
-export async function getAll() {
+export async function getAll(debtId: string) {
     const { data } = await httpClient.get<InstallmentsResponse>(
-        "/Installment"
+        `/Installment?debtId=${debtId}`
     );
 
     return data;

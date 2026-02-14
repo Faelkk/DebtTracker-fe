@@ -1,17 +1,16 @@
 import type { Debt } from '@/app/entities/debt'
 import type { Payment } from '@/app/entities/payment'
-import type { User } from '@/app/entities/user'
+
 import { cn } from '@/app/utils/cn'
 import { formatCurrency } from '@/app/utils/formatBalancy'
 import { formatDate } from '@/app/utils/formatDate'
 
 interface AccountCardProps {
   payments: Payment
-  user: User
   debt: Debt
 }
 
-const PaymentsCard = ({ payments,debt,user }: AccountCardProps) => {
+const PaymentsCard = ({ payments,debt }: AccountCardProps) => {
 
 
   return (
@@ -20,7 +19,7 @@ const PaymentsCard = ({ payments,debt,user }: AccountCardProps) => {
           <div className='flex gap-3 items-center'>
            <span className='text-gray-800 font-medium'>Valor:</span>
             <h2 className="text-gray-900 text-2xl font-medium tracking-[0.5px] block max-w-[90%] sm:max-w-full md:max-w-[90%] font-poppins">
-              {formatCurrency(payments.Amount)}
+              {formatCurrency(payments.amount)}
             </h2>
           </div>
         </header>
@@ -28,37 +27,18 @@ const PaymentsCard = ({ payments,debt,user }: AccountCardProps) => {
         <div className="flex flex-col mt-4">
            <div className="flex flex-col pp:flex-row gap-1 sm:gap-0 md:gap-1 sm:flex-col md:flex-row text-base sm:text-sm md:text-base 2xl:text-base mt-1 font-roboto capitalize">
             <span className="text-gray-600">Data do pagamento:</span>
-            <span className='text-gray-900 font-medium'>{formatDate(payments.PaidAt)}</span>
+            <span className='text-gray-900 font-medium'>{formatDate(payments.paidAt)}</span>
           </div>
-   <div className="flex flex-col pp:flex-row gap-1 sm:flex-col md:flex-row text-base sm:text-sm md:text-base 2xl:text-base mt-1 font-roboto">
-            {' '}
-            {user.userId === debt.creditorId ? (
-            <div className="flex flex-col pp:flex-row gap-1 sm:gap-0 md:gap-1 sm:flex-col md:flex-row text-base sm:text-sm md:text-base 2xl:text-base mt-1 font-roboto capitalize">
-              <span className="text-gray-600">
-                Devedor:
-              </span>
-                <span
-                  className={cn(
-                    'font-medium tracking-[0.5px]',
-                    debt.isPaid ? 'text-teal-800' : 'text-red-800',
-                  )}
-                >
-                  {debt.debtorId}
-                </span>
-             </div>
-            ) : (
-                <div className="flex flex-col pp:flex-row gap-1 sm:gap-0 md:gap-1 sm:flex-col md:flex-row text-base sm:text-sm md:text-base 2xl:text-base mt-1 font-roboto capitalize">
-                      <span className="text-gray-600">Credetor:</span>
-                <span
-                  className={cn(
-                    'font-medium tracking-[0.5px]',
-                    debt.isPaid ? 'text-teal-800' : 'text-red-800',
-                  )}
-                >    
-               {debt.creditorId}</span>
-              </div>
-            )}
-          </div>
+           <div className="mt-1 text-sm 2xl:text-base font-roboto capitalize">
+             <span className="text-gray-600">Devedor:  <span
+                className={cn(
+                  'font-medium tracking-[0.5px]',
+                  debt.isPaid ? 'text-teal-800' : 'text-red-800',
+                )}
+              >
+                {debt.involvedPartyName}
+              </span>{' '} </span>
+            </div>
         </div>
     </section>
   )

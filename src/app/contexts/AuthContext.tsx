@@ -58,9 +58,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   }, [isError, signout]);
 
-  useEffect(() => {
-    console.log("Data received:", user);
-  }, [user]);
 
   const value = useMemo(
     () => ({

@@ -1,8 +1,8 @@
 export interface Payment{
-      PaymentId: string
-      DebtId:string
-      InstallmentId:string
-      Amount:number
-      PaidAt:string
+      paymentId: string
+      debtId:string
+      installmentId:string
+      amount:number
+      paidAt:string
 
 }

@@ -8,6 +8,7 @@ import { useOpenCreateNewDebtModal } from './useOpenCreateNewDebtModal'
 import { currencyStringToNumber } from '@/app/utils/currencyStringToNumber'
 import { formatCurrency } from '@/app/utils/formatBalancy'
 
+
 const OpenNewCreateDebtModal = ({
   isOpen,
   toggleCreateDebtModal,
@@ -15,7 +16,7 @@ const OpenNewCreateDebtModal = ({
   isOpen: boolean
   toggleCreateDebtModal: () => void
 }) => {
-  const { form, isLoading, users } = useOpenCreateNewDebtModal({
+  const { form, isLoading } = useOpenCreateNewDebtModal({
     toggleCreateDebtModal,
   })
 
@@ -70,6 +71,24 @@ const OpenNewCreateDebtModal = ({
           )}
         />
 
+              <Field
+  form={form}
+  name="isMyDebt"
+  children={(field) => (
+    <Select
+      placeholder="Tipo da dívida"
+      value={String(field.state.value)}
+      onChange={(value) => field.handleChange(value === "true")}
+      error={field.state.meta.errors[0]}
+      options={[
+        { value: "true", label: "Dívida a pagar" },
+        { value: "false", label: "Dívida a receber" },
+      ]}
+    />
+  )}
+/>
+
+
         <Field
           form={form}
           name="installments"
@@ -89,39 +108,22 @@ const OpenNewCreateDebtModal = ({
           )}
         />
 
-        <Field
+       <Field
           form={form}
-          name="creditorId"
+          name="involvedPartyName"
           children={(field) => (
-            <Select
-              placeholder="Emprestador"
+            <Input
+              name="involvedPartyName"
+              type="text"
+              label="Nome do envolvido"
               value={field.state.value}
-              onChange={field.handleChange}
+              onChange={(e) => field.handleChange(e.target.value)}
               error={field.state.meta.errors[0]}
-              options={users.map((u) => ({
-                value: u.userId,
-                label: u.name,
-              }))}
             />
           )}
         />
 
-        <Field
-          form={form}
-          name="debtorId"
-          children={(field) => (
-            <Select
-              placeholder="Devedor"
-              value={field.state.value}
-              onChange={field.handleChange}
-              error={field.state.meta.errors[0]}
-              options={users.map((u) => ({
-                value: u.userId,
-                label: u.name,
-              }))}
-            />
-          )}
-        />
+
 
         <Field
           form={form}
