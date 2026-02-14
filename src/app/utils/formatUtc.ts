@@ -10,3 +10,4 @@ export function parseDate(value: string): Date | null {
   if (!day || !month || !year) return null;
   return new Date(Date.UTC(year, month - 1, day)); 
 }
+
