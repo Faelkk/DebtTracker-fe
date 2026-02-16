@@ -48,29 +48,27 @@ O sistema conta com autenticação de usuários, controle de acesso por perfil e
 
 Abaixo algumas prévias principais da aplicação:
 
-### Tela de Login de Usuario
 
-![Tela de login](/public/docs/genres.png)
 
 ### Tela de Dividas
 
-![Tela de dividas](/public/docs/loans.png)
+![Tela de dividas](/public/docs/debts.png)
 
 ### Tela de Parcelas
 
-![Tela de parcelas](/public/docs/books.png)
+![Tela de parcelas](/public/docs/installments.png)
 
 ### Tela de Empréstimos
 
-![Tela de empréstimos](/public/docs/user.png)
+![Tela de empréstimos](/public/docs/payments.png)
 
 ### Tela de Cadastro de divida
 
-![Tela de cadastro de dividas](/public/docs/clients.png)
+![Tela de cadastro de dividas](/public/docs/create-payment.png)
 
 ### Tela de Realizar de pagamento
 
-![Tela de pagamento](/public/docs/clients.png)
+![Tela de pagamento](/public/docs/create-debt.png)
 
 ## 🚀 Como Rodar o Projeto
 
