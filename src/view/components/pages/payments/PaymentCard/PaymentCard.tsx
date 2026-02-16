@@ -29,14 +29,24 @@ const PaymentsCard = ({ payments,debt }: AccountCardProps) => {
             <span className="text-gray-600">Data do pagamento:</span>
             <span className='text-gray-900 font-medium'>{formatDate(payments.paidAt)}</span>
           </div>
-           <div className="mt-1 text-sm 2xl:text-base font-roboto capitalize">
+               <div className="mt-1 text-sm 2xl:text-base font-roboto capitalize">
              <span className="text-gray-600">Devedor:  <span
                 className={cn(
                   'font-medium tracking-[0.5px]',
                   debt.isPaid ? 'text-teal-800' : 'text-red-800',
                 )}
               >
-                {debt.involvedPartyName}
+                {debt.debtorName}
+              </span>{' '} </span>
+            </div>
+             <div className="mt-1 text-sm 2xl:text-base font-roboto capitalize">
+             <span className="text-gray-600">Creditor:  <span
+                className={cn(
+                  'font-medium tracking-[0.5px]',
+                  debt.isPaid ? 'text-teal-800' : 'text-red-800',
+                )}
+              >
+                {debt.creditorName}
               </span>{' '} </span>
             </div>
         </div>

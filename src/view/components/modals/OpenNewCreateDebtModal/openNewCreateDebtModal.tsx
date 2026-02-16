@@ -110,18 +110,35 @@ const OpenNewCreateDebtModal = ({
 
        <Field
           form={form}
-          name="involvedPartyName"
+          name="debtorName"
           children={(field) => (
             <Input
-              name="involvedPartyName"
+              name="debtorName"
               type="text"
-              label="Nome do envolvido"
+              label="Nome do devedor"
               value={field.state.value}
               onChange={(e) => field.handleChange(e.target.value)}
               error={field.state.meta.errors[0]}
             />
           )}
         />
+
+        
+       <Field
+          form={form}
+          name="creditorName"
+          children={(field) => (
+            <Input
+              name="creditorName"
+              type="text"
+              label="Nome do credetor"
+              value={field.state.value}
+              onChange={(e) => field.handleChange(e.target.value)}
+              error={field.state.meta.errors[0]}
+            />
+          )}
+        />
+
 
 
 

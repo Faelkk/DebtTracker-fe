@@ -1,7 +1,8 @@
 import { httpClient } from "../httpClient";
 
 export interface CreateDebtParams {
-  involvedPartyName: string;
+  debtorName: string;
+  creditorName: string
   description: string;
   totalAmount: number;
   installments: number;

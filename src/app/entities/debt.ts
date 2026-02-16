@@ -7,6 +7,7 @@ export interface Debt {
   createdAt: string;
   dueDate: string;
   isPaid: boolean;
-  involvedPartyName: string
+  debtorName: string;
+  creditorName: string
   isMyDebt: string
 }

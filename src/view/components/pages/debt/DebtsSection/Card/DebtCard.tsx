@@ -68,11 +68,21 @@ const DebtCard = ({
               <div className="mt-1 text-sm 2xl:text-base font-roboto capitalize">
              <span className="text-gray-600">Devedor:  <span
                 className={cn(
-                  'font-medium tracking-[0.5px]',
-                  debt.isPaid ? 'text-teal-800' : 'text-red-800',
+                  'font-medium tracking-[0.5px] text-red-800',
+                
                 )}
               >
-                {debt.involvedPartyName}
+                {debt.debtorName}
+              </span>{' '} </span>
+            </div>
+             <div className="mt-1 text-sm 2xl:text-base font-roboto capitalize">
+             <span className="text-gray-600">Creditor:  <span
+                className={cn(
+                  'font-medium tracking-[0.5px] text-teal-800',
+              
+                )}
+              >
+                {debt.creditorName}
               </span>{' '} </span>
             </div>
         </div>

@@ -10,7 +10,8 @@ import { useAllUser } from "@/app/hooks/useAllUsers";
 import { formatCurrencyForm } from "@/app/utils/formatCurrencyForm";
 
 const schema = z.object({
-  involvedPartyName: z.string().nonempty("Nome do envolvido é obrigatório"),
+  creditorName: z.string().nonempty("Nome do credetor é obrigatório"),
+  debtorName: z.string().nonempty("Nome do devedor é obrigatório"),
   description: z.string().nonempty("Descrição é obrigatória"),
   totalAmount: z
   .string()
@@ -53,7 +54,8 @@ export function useOpenCreateNewDebtModal({
   const [day, month, year] = data.dueDate.split("/").map(Number);
 
   const formattedData = {
-    involvedPartyName: data.involvedPartyName,
+    creditorName: data.creditorName,
+    debtorName: data.debtorName,
     description: data.description,
     totalAmount: formatCurrencyForm(data.totalAmount),
     installments: Number(data.installments),
@@ -69,7 +71,8 @@ export function useOpenCreateNewDebtModal({
 
   const form = useForm({
     defaultValues: {
-      involvedPartyName: "",
+      creditorName: "",
+      debtorName: "",
       description: "",
       totalAmount: "",
       installments: "1",
