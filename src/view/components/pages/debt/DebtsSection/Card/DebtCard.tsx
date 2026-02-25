@@ -23,11 +23,11 @@ const DebtCard = ({
 
 
   return (
-    <div className="p-4 max-h-[24rem] min-h-[24rem] bg-gray-200  h-full 2xl:min-h-[22rem] rounded-2xl  sm:max-w-[18.75rem] md:max-w-full md:w-full flex flex-col justify-between border-b-4 border-teal-950">
+    <div className="p-4 max-h-[24rem] min-h-[24rem] border bg-woodsmoke-100 h-full 2xl:min-h-[22rem] rounded-2xl  sm:max-w-[18.75rem] md:max-w-full md:w-full flex flex-col justify-between drop-shadow-md">
       <section>
         <header className="flex flex-col pp:flex-row sm:flex-row md:flex-row w-full justify-between items-center">
           <div className="flex items-center justify-center">
-            <h2 className="text-gray-900 text-2xl  sm:text-2xl font-medium tracking-[0.5px] block  font-poppins">
+            <h2 className="text-woodsmoke-800 text-2xl  sm:text-2xl font-medium tracking-[0.5px] block  font-poppins">
               {formatCurrency(debt.totalAmount)}
             </h2>
           </div>
@@ -41,34 +41,34 @@ const DebtCard = ({
         </header>
 
         <div className="flex flex-col mt-4">
-          <span className="text-gray-600 text-sm 2xl:text-base mt-1 font-roboto max-w-[90%] break-all line-clamp-3">
+          <span className="text-woodsmoke-700 text-sm 2xl:text-base mt-1 font-roboto max-w-[90%] break-all line-clamp-3">
             {debt.description}
           </span>
 
           <div className="mt-1 text-sm 2xl:text-base font-roboto capitalize">
-            <span className="text-gray-600 ">Prazo do pagamento:</span>
+            <span className="text-woodsmoke-700 ">Prazo do pagamento:</span>
             <span
-              className={cn('font-medium', debt.isPaid ? 'text-teal-800' : 'text-red-800')}
+              className={cn('font-medium', debt.isPaid ? 'text-teal-800' : 'text-red-900')}
             >
               {formatDate(debt.dueDate)}
             </span>
           </div>
 
             <div className="mt-1 text-sm 2xl:text-base font-roboto">
-              <span className="text-gray-600">Valor: </span>
+              <span className="text-woodsmoke-700">Valor: </span>
               <span
                 className={cn(
                   'font-medium tracking-[0.5px]',
-                  debt.isPaid ? 'text-teal-800' : 'text-red-800',
+                  debt.isPaid ? 'text-teal-800' : 'text-red-900',
                 )}
               >
                 {debt.isPaid ? 'Pago' : 'Pendente'}
               </span>
             </div>
               <div className="mt-1 text-sm 2xl:text-base font-roboto capitalize">
-             <span className="text-gray-600">Devedor:  <span
+             <span className="text-woodsmoke-700">Devedor:  <span
                 className={cn(
-                  'font-medium tracking-[0.5px] text-red-800',
+                  'font-medium tracking-[0.5px] text-red-900',
                 
                 )}
               >
@@ -76,7 +76,7 @@ const DebtCard = ({
               </span>{' '} </span>
             </div>
              <div className="mt-1 text-sm 2xl:text-base font-roboto capitalize">
-             <span className="text-gray-600">Creditor:  <span
+             <span className="text-woodsmoke-700">Creditor:  <span
                 className={cn(
                   'font-medium tracking-[0.5px] text-teal-800',
               

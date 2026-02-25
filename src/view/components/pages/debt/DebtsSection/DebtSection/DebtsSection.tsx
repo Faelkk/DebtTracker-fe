@@ -33,9 +33,9 @@ const DebtsSection = () => {
   } = useDebtSectionController();
 
   return (
-<main className="bg-teal-900 rounded-2xl h-full w-full mt-10 flex flex-col flex-1 max-h-[89vh] overflow-hidden">
+<main className="rounded-2xl h-full w-full flex flex-col flex-1  px-2 md:px-10  bg-woodsmoke-200 pb-10 ">
  
-    <section className="flex flex-col flex-1 overflow-hidden relative px-4  md:p-10">
+    <section className="flex flex-col flex-1  relative px-4 md:px-10 mt-10">
       {isLoading ? (<>
       <div>
         <LoaderCircle className="animate-spin w-12 h-12 text-gray-300 mx-auto mt-20" />
@@ -43,10 +43,10 @@ const DebtsSection = () => {
       </>) : <>
         <header className="flex flex-col 2xl:flex-row 2xl:items-center gap-2 justify-between w-full shrink-0">
         <div className="flex flex-col">
-          <h2 className="font-poppins text-gray-50 font-medium text-xl">
+          <h2 className="font-poppins text-teal-900 font-bold text-2xl">
             Minhas dívidas
           </h2>
-          <span className="font-roboto text-gray-300">
+          <span className="font-roboto text-woodsmoke-700">
             Clique em uma dívida para ver mais informações
           </span>
         </div>
