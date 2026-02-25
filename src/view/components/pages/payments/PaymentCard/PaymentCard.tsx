@@ -14,11 +14,11 @@ const PaymentsCard = ({ payments,debt }: AccountCardProps) => {
 
 
   return (
-    <section className="p-4 min-h-[15rem] md:max-h-[300px] bg-gray-200  h-full  rounded-2xl  sm:max-w-[18.75rem] md:max-w-full md:w-full flex flex-col justify-between border-b-4 border-teal-950">
+    <section className="p-4 max-h-[24rem] min-h-[24rem] border-2 bg-teal-900/8 border-teal-900  h-full 2xl:min-h-[22rem] rounded-2xl  sm:max-w-[18.75rem] md:max-w-full md:w-full flex flex-col justify-between drop-shadow-md">
         <header className="flex flex-col pp:flex-row sm:flex-col md:flex-row w-full justify-between items-start">
           <div className='flex gap-3 items-center'>
-           <span className='text-gray-800 font-medium'>Valor:</span>
-            <h2 className="text-gray-900 text-2xl font-medium tracking-[0.5px] block max-w-[90%] sm:max-w-full md:max-w-[90%] font-poppins">
+              <span className='text-woodsmoke-00 font-medium'>Valor:</span>
+          <h2 className="text- text-2xl font-medium tracking-[0.5px] block max-w-[90%] sm:max-w-full md:max-w-[90%] font-poppins">
               {formatCurrency(payments.amount)}
             </h2>
           </div>
@@ -26,11 +26,11 @@ const PaymentsCard = ({ payments,debt }: AccountCardProps) => {
 
         <div className="flex flex-col mt-4">
            <div className="flex flex-col pp:flex-row gap-1 sm:gap-0 md:gap-1 sm:flex-col md:flex-row text-base sm:text-sm md:text-base 2xl:text-base mt-1 font-roboto capitalize">
-            <span className="text-gray-600">Data do pagamento:</span>
-            <span className='text-gray-900 font-medium'>{formatDate(payments.paidAt)}</span>
+            <span className="text-woodsmoke-700">Data do pagamento:</span>
+            <span className='text-woodsmoke-900 font-medium'>{formatDate(payments.paidAt)}</span>
           </div>
                <div className="mt-1 text-sm 2xl:text-base font-roboto capitalize">
-             <span className="text-gray-600">Devedor:  <span
+             <span className="text-woodsmoke-700">Devedor:  <span
                 className={cn(
                   'font-medium tracking-[0.5px]',
                   debt.isPaid ? 'text-teal-800' : 'text-red-800',
@@ -40,7 +40,7 @@ const PaymentsCard = ({ payments,debt }: AccountCardProps) => {
               </span>{' '} </span>
             </div>
              <div className="mt-1 text-sm 2xl:text-base font-roboto capitalize">
-             <span className="text-gray-600">Creditor:  <span
+             <span className="text-woodsmoke-700">Creditor:  <span
                 className={cn(
                   'font-medium tracking-[0.5px]',
                   debt.isPaid ? 'text-teal-800' : 'text-red-800',

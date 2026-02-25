@@ -23,11 +23,10 @@ const PaymentsSection = () => {
     setActiveFilter,
   } = usePaymentSectionController();
 
-  // 🔄 Loading
   if (isLoading || debtIsLoading) {
     return (
       <main className="bg-teal-900 rounded-2xl h-full w-full mt-10 flex items-center justify-center">
-        <LoaderCircle className="text-gray-50 w-10 h-10 animate-spin" />
+       <LoaderCircle className="text-woodsmoke-200  w-10 h-10 animate-spin" />
       </main>
     );
   }
@@ -35,7 +34,7 @@ const PaymentsSection = () => {
 
   if (!debt) {
     return (
-      <main className="bg-teal-900 rounded-2xl h-full w-full px-4 py-8 md:p-10 mt-10 flex flex-col">
+<main className="rounded-2xl h-full w-full flex flex-col flex-1  px-2 md:px-10  bg-woodsmoke-200 pb-10 ">
         <div className="flex w-full h-full items-center justify-center">
           <button
             className="h-52 border-2 border-teal-600 border-dashed rounded-2xl
@@ -60,29 +59,29 @@ const PaymentsSection = () => {
   }
 
   return (
-    <main className="bg-teal-900 rounded-2xl h-full w-full mt-10 flex flex-col flex-1 max-h-[89vh] overflow-hidden">
+   <main className="rounded-2xl h-full w-full flex flex-col flex-1  px-2 md:px-10  bg-woodsmoke-200 pb-10 ">
       <section className="flex flex-col flex-1 overflow-hidden px-4 py-8 md:p-10 relative">
         <header className="flex flex-col 2xl:flex-row 2xl:items-center gap-2 justify-between w-full shrink-0">
           <div>
             <div className="flex items-center gap-2">
               <ArrowLeft
-                className="text-gray-300 w-6 h-6 cursor-pointer"
+                     className="text-woodsmoke-700 w-6 h-6 cursor-pointer"
                 onClick={() => window.history.back()}
               />
-              <h2 className="font-roboto text-gray-300"> Voltar</h2>
+              <h2 className="font-roboto text-woodsmoke-700 "> Voltar</h2>
             </div>
 
             <div className="mt-10">
-              <h1 className="font-poppins text-gray-50 font-medium text-xl">
+                <h1 className="font-poppins text-teal-900 font-bold text-2xl">
                 Meus pagamentos
               </h1>
-              <span className="font-roboto text-gray-300">
+                  <span className="font-roboto text-woodsmoke-700">
                 Clique em um pagamento para ver mais informações
               </span>
             </div>
           </div>
 
-          <div className="flex flex-col-reverse sm:flex-row gap-3 w-full justify-end mt-5">
+          <div className="flex flex-col-reverse sm:flex-row gap-3 w-full justify-end mt-5 lg:mt-0">
             <DropdownFilterPayment
               activeFilter={activeFilter}
               onSelect={setActiveFilter}

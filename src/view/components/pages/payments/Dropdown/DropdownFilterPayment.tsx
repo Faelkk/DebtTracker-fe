@@ -52,7 +52,7 @@ const DropdownFilterPayment = ({
     <div
       ref={dropdownRef}
       onClick={handleContainerClick}
-      className="bg-gray-100 rounded-lg text-gray-700 px-3 h-[3.25rem] flex items-center relative cursor-pointer gap-3 font-roboto justify-between text-sm select-none"
+  className="border bg-woodsmoke-800 rounded-lg text-woodsmoke-50 px-3 h-[3.25rem] flex items-center relative cursor-pointer gap-3 font-roboto justify-between text-sm select-none"
     >
       <span className="flex items-center gap-2">
         {activeFilter || "Filtrar por"}
@@ -60,7 +60,7 @@ const DropdownFilterPayment = ({
       </span>
 
       {isToggled && (
-        <ul className="flex flex-col absolute bg-gray-200 top-0 left-0 mt-14 p-3 rounded w-full border-b-4 border-b-teal-600 min-w-[10rem] z-50">
+        <ul className="flex flex-col absolute bg-woodsmoke-800 top-0 left-0 mt-14 p-3 rounded w-full min-w-[10rem] z-50">
         {FILTERS
   .filter((filter) => filter !== activeFilter)
   .map((filter) => (
@@ -70,7 +70,7 @@ const DropdownFilterPayment = ({
         e.stopPropagation();
         handleSelectFilter(filter);
       }}
-      className="px-2 py-2 transition hover:bg-gray-100 rounded cursor-pointer font-roboto"
+      className="px-2 py-2 transition hover:bg-woodsmoke-600 rounded cursor-pointer font-roboto"
     >
       {filter}
     </li>

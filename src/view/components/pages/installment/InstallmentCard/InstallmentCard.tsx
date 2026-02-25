@@ -40,12 +40,12 @@ const InstallmentsCard = ({ Installments,togglePaymentModal ,debt}: AccountCardP
         </header>
 
         <div className="flex flex-col mt-4">
-          <span className="text-woodsmoke-600 text-sm  2xl:text-base mt-1 font-roboto">
+          <span className="text-woodsmoke-700 text-sm  2xl:text-base mt-1 font-roboto">
             Valor pago: <span className="text-woodsmoke-800 font-medium">{formatCurrency(Installments.paidAmount)}</span>
           </span>
 
           <div className="mt-1 text-sm 2xl:text-base font-roboto capitalize">
-            <span className="text-woodsmoke-600">Prazo do pagamento:</span>
+            <span className="text-woodsmoke-700">Prazo do pagamento:</span>
             <span
               className={cn('font-medium', Installments.isPaid ? 'text-teal-800' : 'text-red-800')}
             >
@@ -55,7 +55,7 @@ const InstallmentsCard = ({ Installments,togglePaymentModal ,debt}: AccountCardP
 
        
             <div className="mt-1 text-sm 2xl:text-base font-roboto">
-              <span className="text-woodsmoke-600">Status: </span>
+              <span className="text-woodsmoke-700">Status: </span>
               <span
                 className={cn(
                   'font-medium tracking-[0.5px]',
@@ -68,7 +68,7 @@ const InstallmentsCard = ({ Installments,togglePaymentModal ,debt}: AccountCardP
                   <div className="mt-1 text-sm 2xl:text-base font-roboto capitalize">
             {' '}
                  <div className="mt-1 text-sm 2xl:text-base font-roboto capitalize">
-             <span className="text-woodsmoke-600">Devedor:  <span
+             <span className="text-woodsmoke-700">Devedor:  <span
                 className={cn(
                   'font-medium tracking-[0.5px]',
                   debt.isPaid ? 'text-teal-800' : 'text-red-800',
@@ -78,7 +78,7 @@ const InstallmentsCard = ({ Installments,togglePaymentModal ,debt}: AccountCardP
               </span>{' '} </span>
             </div>
              <div className="mt-1 text-sm 2xl:text-base font-roboto capitalize">
-             <span className="text-woodsmoke-600">Creditor:  <span
+             <span className="text-woodsmoke-700">Creditor:  <span
                 className={cn(
                   'font-medium tracking-[0.5px]',
                   debt.isPaid ? 'text-teal-800' : 'text-red-800',
