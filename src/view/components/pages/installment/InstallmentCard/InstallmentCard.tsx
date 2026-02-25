@@ -20,21 +20,19 @@ interface AccountCardProps {
 
 }
 
-const InstallmentsCard = ({ Installments,togglePaymentModal ,debt,user}: AccountCardProps) => {
+const InstallmentsCard = ({ Installments,togglePaymentModal ,debt}: AccountCardProps) => {
 
   const navigate = useNavigate()
 
 
 
   return (
-  <div
-      className="p-4 max-h-[24rem] min-h-[24rem] bg-gray-200  h-full 2xl:min-h-[22rem] rounded-2xl  sm:max-w-[18.75rem] md:max-w-full md:w-full flex flex-col justify-between border-b-4 border-teal-950"
-    >
+  <div className="p-4 max-h-[24rem] min-h-[24rem] border-2 bg-teal-900/8 border-teal-900  h-full 2xl:min-h-[22rem] rounded-2xl  sm:max-w-[18.75rem] md:max-w-full md:w-full flex flex-col justify-between drop-shadow-md">
       <section>
         <header className="flex flex-col pp:flex-row sm:flex-col md:flex-row w-full justify-between items-start">
            <div className='flex gap-3 items-center'>
-           <span className='text-gray-800 font-medium'>Valor:</span>
-            <h2 className="text-gray-900 text-2xl font-medium tracking-[0.5px] block max-w-[90%] sm:max-w-full md:max-w-[90%] font-poppins">
+           <span className='text-woodsmoke-700 font-medium'>Valor:</span>
+            <h2 className="text- text-2xl font-medium tracking-[0.5px] block max-w-[90%] sm:max-w-full md:max-w-[90%] font-poppins">
               {formatCurrency(Installments.amount)}
             </h2>
           </div>
@@ -42,12 +40,12 @@ const InstallmentsCard = ({ Installments,togglePaymentModal ,debt,user}: Account
         </header>
 
         <div className="flex flex-col mt-4">
-          <span className="text-gray-600 text-sm  2xl:text-base mt-1 font-roboto">
-            Valor pago: <span className="text-gray-800 font-medium">{formatCurrency(Installments.paidAmount)}</span>
+          <span className="text-woodsmoke-600 text-sm  2xl:text-base mt-1 font-roboto">
+            Valor pago: <span className="text-woodsmoke-800 font-medium">{formatCurrency(Installments.paidAmount)}</span>
           </span>
 
           <div className="mt-1 text-sm 2xl:text-base font-roboto capitalize">
-            <span className="text-gray-600">Prazo do pagamento:</span>
+            <span className="text-woodsmoke-600">Prazo do pagamento:</span>
             <span
               className={cn('font-medium', Installments.isPaid ? 'text-teal-800' : 'text-red-800')}
             >
@@ -57,7 +55,7 @@ const InstallmentsCard = ({ Installments,togglePaymentModal ,debt,user}: Account
 
        
             <div className="mt-1 text-sm 2xl:text-base font-roboto">
-              <span className="text-gray-600">Status: </span>
+              <span className="text-woodsmoke-600">Status: </span>
               <span
                 className={cn(
                   'font-medium tracking-[0.5px]',
@@ -70,7 +68,7 @@ const InstallmentsCard = ({ Installments,togglePaymentModal ,debt,user}: Account
                   <div className="mt-1 text-sm 2xl:text-base font-roboto capitalize">
             {' '}
                  <div className="mt-1 text-sm 2xl:text-base font-roboto capitalize">
-             <span className="text-gray-600">Devedor:  <span
+             <span className="text-woodsmoke-600">Devedor:  <span
                 className={cn(
                   'font-medium tracking-[0.5px]',
                   debt.isPaid ? 'text-teal-800' : 'text-red-800',
@@ -80,7 +78,7 @@ const InstallmentsCard = ({ Installments,togglePaymentModal ,debt,user}: Account
               </span>{' '} </span>
             </div>
              <div className="mt-1 text-sm 2xl:text-base font-roboto capitalize">
-             <span className="text-gray-600">Creditor:  <span
+             <span className="text-woodsmoke-600">Creditor:  <span
                 className={cn(
                   'font-medium tracking-[0.5px]',
                   debt.isPaid ? 'text-teal-800' : 'text-red-800',

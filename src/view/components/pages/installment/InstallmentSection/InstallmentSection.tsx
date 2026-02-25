@@ -53,10 +53,10 @@ const InstallmentsSection = () => {
   }
 
   return (
-    <main className="bg-teal-900 rounded-2xl h-full w-full  mt-10 flex flex-col flex-1  max-h-[89vh] overflow-hidden">
+<main className="rounded-2xl h-full w-full flex flex-col flex-1  px-2 md:px-10  bg-woodsmoke-200 pb-10 ">
       {isLoading || userIsLoading || debtIsLoading ? (
         <div className="flex justify-center items-center flex-1">
-          <LoaderCircle className="text-gray-50 w-10 h-10 animate-spin" />
+          <LoaderCircle className="text-woodsmoke-200  w-10 h-10 animate-spin" />
         </div>
       ) : (
         <>
@@ -65,23 +65,23 @@ const InstallmentsSection = () => {
               <div>
                 <div className="flex items-center gap-2">
                   <ArrowLeft
-                    className="text-gray-300 w-6 h-6 cursor-pointer"
+                    className="text-woodsmoke-700 w-6 h-6 cursor-pointer"
                     onClick={() => window.history.back()}
                   />
-                  <h2 className="font-roboto text-gray-300">Voltar</h2>
+                  <h2 className="font-roboto text-woodsmoke-700 font-medium">Voltar</h2>
                 </div>
 
                 <div className="mt-10">
-                  <h2 className="font-poppins text-gray-50 font-medium text-xl">
+                    <h2 className="font-poppins text-teal-900 font-bold text-2xl">
                     Minhas parcelas
                   </h2>
-                  <span className="font-roboto text-gray-300">
+                 <span className="font-roboto text-woodsmoke-700">
                     Clique em uma parcela para ver mais informações
                   </span>
                 </div>
               </div>
 
-              <div className="flex flex-col-reverse sm:flex-row gap-3 w-full justify-end mt-5">
+              <div className="flex flex-col-reverse sm:flex-row gap-3 w-full justify-end md:mt-0 lg:mt-0">
                 <DropdownFilterInstallment
                   activeFilter={activeFilter}
                   onSelect={setActiveFilter}

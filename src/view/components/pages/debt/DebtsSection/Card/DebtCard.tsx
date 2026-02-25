@@ -1,6 +1,5 @@
 import { useNavigate } from '@tanstack/react-router'
 import { Trash } from 'lucide-react'
-import type { User } from '@/app/entities/user'
 import type { Debt } from '@/app/entities/debt'
 import { cn } from '@/app/utils/cn'
 import { formatCurrency } from '@/app/utils/formatBalancy'
@@ -23,7 +22,7 @@ const DebtCard = ({
 
 
   return (
-    <div className="p-4 max-h-[24rem] min-h-[24rem] border bg-woodsmoke-100 h-full 2xl:min-h-[22rem] rounded-2xl  sm:max-w-[18.75rem] md:max-w-full md:w-full flex flex-col justify-between drop-shadow-md">
+    <div className="p-4 max-h-[24rem] min-h-[24rem] border-2 bg-teal-900/8 border-teal-900  h-full 2xl:min-h-[22rem] rounded-2xl  sm:max-w-[18.75rem] md:max-w-full md:w-full flex flex-col justify-between drop-shadow-md">
       <section>
         <header className="flex flex-col pp:flex-row sm:flex-row md:flex-row w-full justify-between items-center">
           <div className="flex items-center justify-center">

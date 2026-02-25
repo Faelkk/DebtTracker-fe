@@ -38,7 +38,7 @@ const DebtsSection = () => {
     <section className="flex flex-col flex-1  relative px-4 md:px-10 mt-10">
       {isLoading ? (<>
       <div>
-        <LoaderCircle className="animate-spin w-12 h-12 text-gray-300 mx-auto mt-20" />
+        <LoaderCircle className="animate-spin w-12 h-12 text-woodsmoke-200 mx-auto mt-20" />
       </div>
       </>) : <>
         <header className="flex flex-col 2xl:flex-row 2xl:items-center gap-2 justify-between w-full shrink-0">
@@ -51,7 +51,7 @@ const DebtsSection = () => {
           </span>
         </div>
 
-        <div className="flex flex-col-reverse sm:flex-row gap-3 w-full justify-end mt-5">
+        <div className="flex flex-col-reverse sm:flex-row gap-3 w-full justify-end mt-4 lg:mt-0">
           <DropdownFilterDebt activeFilter={activeFilter} onSelect={setActiveFilter} />
           <div className="w-full sm:w-auto flex-1 2xl:max-w-[400px] xl:max-w-[600px]">
             <InputSearchDebt onSearch={setSearchTerm} />
@@ -101,7 +101,6 @@ const DebtsSection = () => {
       </div>
       </>}
 
-           <BtnActions toggleCreateDebtModal={toggleCreateDebtModal} togglePaymentModal={togglePaymentModal}/> 
     </section>
   
 
@@ -118,10 +117,10 @@ const DebtsSection = () => {
        <DeleteDebtModal isOpenDeleteDebtModal={isOpenDeleteDebtModal} onCloseDeleteDebtModal={onCloseDeleteDebtModal} debtId={selectedDeleteDebt} />
 
      <OpenNewEditDebtModal onCloseEditDebtModal={onCloseEditDebtModal} isOpenEditDebtModal={isToggledEditDebtModal} debtId={selectedConfirmDebt} /> 
+
+     
+           <BtnActions toggleCreateDebtModal={toggleCreateDebtModal} togglePaymentModal={togglePaymentModal}/> 
 </main>
-
-
-
 
   )
 }

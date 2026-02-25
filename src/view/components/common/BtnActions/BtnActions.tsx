@@ -28,7 +28,7 @@ const BtnActions = ({ toggleCreateDebtModal,togglePaymentModal }: BtnActionsProp
   };
 
   return (
-    <div className="absolute bottom-2 right-2 flex flex-col gap-3 items-end" ref={dropdownRef}>
+    <div className="fixed bottom-2 right-2 flex flex-col gap-3 items-end" ref={dropdownRef}>
       {isToggled && (
         <ul className="flex flex-col bg-gray-100 p-1 rounded-md w-full border-b-4 border-b-teal-600 min-w-[10rem] z-50">
           <li
@@ -48,7 +48,7 @@ const BtnActions = ({ toggleCreateDebtModal,togglePaymentModal }: BtnActionsProp
       )}
 
       <button
-        className="bg-teal-700 shadow-md rounded-full w-8 h-8 flex items-center justify-center relative transition-colors cursor-pointer" 
+        className="bg-teal-700 shadow-md rounded-full w-10 h-10 flex items-center justify-center relative transition-colors cursor-pointer" 
         onClick={toggle} 
       >
         <Plus className="w-8 h-8 text-gray-50" />
